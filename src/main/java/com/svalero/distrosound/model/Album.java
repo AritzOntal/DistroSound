@@ -2,15 +2,15 @@ package com.svalero.distrosound.model;
 
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 @Data
 public class Album {
 
     private int id_album, id_client, id_employee;
-    private String url_cover, ISRC, title, genre;
+    private String url_cover, ISRC, title, genre, artist;
     private boolean explicit;
-    private LocalDate release_date;
+    private Date release_date;
     private float duration;
 
 
