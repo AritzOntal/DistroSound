@@ -9,17 +9,22 @@
     <link rel="stylesheet" href="./css/styless.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        html, body {
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
 <jsp:include page="includes/navbar.jsp"/>
+<div class="bg-custom-employee">
 
-<div class="bg-custom-client">
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card p-4 shadow-lg" style="width: 500px;">
             <div class="card-body">
                 <h1 class="h3 mb-3 fw-normal text-center">Distro Sound</h1>
-                <p class="text-center">Millones de artistas lanzan aquí su música. ¿A qué esperas? Regístrate ahora.</p>
+                <p class="text-center">Si eres un distribuidor regístrate ahora.</p>
 
                 <form class="row g-3">
                     <div class="col-12">
