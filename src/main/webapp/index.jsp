@@ -1,44 +1,71 @@
-<%@ page import="com.svalero.distrosound.database.Database" %>
-<%@ page import="com.svalero.distrosound.dao.AlbumDao" %>
-<%@ page import="com.svalero.distrosound.model.Album" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.sql.SQLException" %>
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>aplicación</title>
-</head>
-<body>
-<h1>
-    MI PRIMERA APLICACION WEB
-</h1>
-<ul>
-<%
-    try {
-Database database = new Database();
-database.connect();
-
-//Le doy la conexión que acabo de pillar con el contructor a AlbumDao
-AlbumDao albumDao = new AlbumDao(database.getConnection());
-
-//creo un arralisty donde cogere la consulta de todos los albunes
-List<Album> albumList = albumDao.getAll();
-
-//recorro el arraylist y de ahi pillo lo que quiero de cada album
-for (Album album : albumList) {
-%>
-    <li>Nombre----> <%= album.getTitle()%></li>
-<%
-}
-        } catch (ClassNotFoundException cnfe) {
-
-        } catch (SQLException sqle) {
-
+    <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>DistroSound</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Asegura que el cuerpo ocupa toda la altura */
+        html, body {
+            height: 100%;
         }
-    %>
-</ul>
+    </style>
+</head>
+
+<body>
+<jsp:include page="navbar.jsp"/>
+
+<!-- Contenedor principal para centrar la tarjeta -->
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4 shadow-lg" style="width: 500px;">
+        <div class="card-body">
+            <h1 class="h3 mb-3 fw-normal text-center">Distro Sound</h1>
+            <p class="text-center">Millones de artistas lanzan aquí su música. ¿A qué esperas? Regístrate ahora.</p>
+
+            <form class="row g-3">
+                <div class="col-12">
+                    <label for="inputEmail4" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-12">
+                    <label for="inputPassword4" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputState" class="form-label">State</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                            Acepto los términos y condiciones
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

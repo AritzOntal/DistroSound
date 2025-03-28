@@ -14,7 +14,7 @@ public class Album {
     private float duration;
 
 
-    public Album(){
+    public Album() {
 
     }
 
