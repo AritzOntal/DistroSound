@@ -70,7 +70,7 @@
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
+                                    <a href="album.jsp?album_id=<%=album.getId_album()%>" type="button" class="btn btn-sm btn-outline-primary">Ver</a>
                                     <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-success">Solicitar Lanzamineto
                                     </button>
