@@ -2,23 +2,13 @@
 <%@ page import="com.svalero.distrosound.dao.AlbumDao" %>
 <%@ page import="com.svalero.distrosound.model.Album" %>
 <%@ page import="java.util.List" %>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>DistroSound</title>
-    <link rel="stylesheet" href="./css/styless.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+<jsp:include page="includes/head.jsp"/>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <body>
 
 <jsp:include page="includes/navbar.jsp"/>
-
 
 <div class="bg-custom-client-zone">
     <div class="container px-4 py-5 " id="featured-3">
@@ -70,9 +60,9 @@
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="album.jsp?album_id=<%=album.getId_album()%>" type="button" class="btn btn-sm btn-outline-primary">Ver</a>
-                                    <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
-                                    <button type="button" class="btn btn-sm btn-outline-success">Solicitar Lanzamineto
+                                    <a href="album.client.jsp?album_id=<%=album.getId_album()%>" type="button" class="btn btn-sm btn-outline-primary">Ver detalles</a>
+                                    <a href="album.client.jsp?album_id=<%=album.getId_album()%>" class="btn btn-sm btn-outline-warning">Editar</a>
+                                    <a href="album.client.jsp?album_id=<%=album.getId_album()%>" class="btn btn-sm btn-outline-success">Solicitar Lanzamineto</a>
                                     </button>
                                 </div>
                             </div>

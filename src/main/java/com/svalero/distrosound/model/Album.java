@@ -8,10 +8,10 @@ import java.sql.Date;
 public class Album {
 
     private int id_album, id_client, id_employee;
-    private String url_cover, ISRC, title, genre, artist;
+    private String url_cover, ISRC, title, genre, artist, description;
     private boolean explicit;
     private Date release_date;
-    private float duration;
+    private float duration, price;
 
 
     public Album() {

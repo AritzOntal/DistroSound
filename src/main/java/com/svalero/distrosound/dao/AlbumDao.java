@@ -1,5 +1,6 @@
 package com.svalero.distrosound.dao;
 
+import com.svalero.distrosound.exception.albumNotFoundException;
 import com.svalero.distrosound.model.Album;
 
 import java.sql.Connection;
@@ -17,7 +18,6 @@ public class AlbumDao {
 
     //hago constructor para pasarme el connection de "Database"
     //para pilarle la conexion rollo alrevés y guardarla en el atributo
-
     public AlbumDao(Connection connection) {
         this.connection = connection;
     }
@@ -33,9 +33,7 @@ public class AlbumDao {
         statement.setInt(2, album.getId_client());
         statement.setString(3, album.getISRC());
 
-
         //UPDATE, INSERT, DELETE SE EJEVUTAN CON ESTE
-
 
         int affectedRows = statement.executeUpdate();
         //execute.query PARA LAS CONSULTAS SELECT
@@ -82,8 +80,7 @@ public class AlbumDao {
         return albumList;
     }
 
-    //devuelve un único juego por id_cliente
-
+    //devuelve TODOS los juegos que ha subido un cliente
     public ArrayList get(int id) throws SQLException {
         String sql = "SELECT * FROM album WHERE id_client = ?";
         PreparedStatement statement = null;
@@ -117,6 +114,37 @@ public class AlbumDao {
         return albumListById;
     }
 
+    //Devuelve un juego por ID
+    public Album getById(int id) throws SQLException, albumNotFoundException {
+
+        String sql = "SELECT * FROM album WHERE id_album = ?";
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        result = statement.executeQuery();
+        if (!result.next()) {
+            throw new albumNotFoundException();
+        }
+            Album album = new Album();
+            album.setId_album(result.getInt("id_album"));
+            album.setTitle(result.getString("title"));
+            album.setExplicit(result.getBoolean("explicit"));
+            album.setDuration(result.getFloat("duration"));
+            album.setArtist(result.getString("artist"));
+            album.setGenre(result.getString("genre"));
+            album.setUrl_cover(result.getString("url_cover"));
+            album.setId_client(result.getInt("id_client"));
+            album.setId_employee(result.getInt("id_employee"));
+            album.setISRC(result.getString("ISRC"));
+            album.setRelease_date(result.getDate("release_date"));
+            album.setDescription(result.getString("description"));
+            album.setDuration(result.getFloat("price"));
+
+            statement.close();
+
+            return (album);
+    }
 
     public void modify() {
 

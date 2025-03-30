@@ -4,23 +4,12 @@
 <%@ page import="com.svalero.distrosound.dao.AlbumDao" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.util.List" %>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>DistroSound</title>
-    <link rel="stylesheet" href="./css/styless.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+<jsp:include page="includes/head.jsp"/>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <body>
-
 <jsp:include page="includes/navbar.jsp"/>
-
 <div class="bg-custom">
     <div class="container">
 
@@ -42,10 +31,10 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
-                                <button type="button" class="btn btn-sm btn-outline-success">Comprar</button>
+                                <a href="album.jsp?album_id=<%=album.getId_album()%>"type="button" class="btn btn-sm btn-outline-primary">Ver</a>
+                                <a href="album.jsp?album_id=<%=album.getId_album()%>" type="button" class="btn btn-sm btn-outline-success">Comprar</a>
                             </div>
-                            <small class="text-body-secondary"> 9,99 €</small>
+                            <small class="text-body-secondary"> <%=album.getPrice()%> €</small>
                         </div>
                     </div>
                 </div>
