@@ -18,11 +18,11 @@ public class AlbumDao {
     //hago constructor para pasarme el connection de "Database"
     //para pilarle la conexion rollo alrevés y guardarla en el atributo
 
-    public AlbumDao (Connection connection){
+    public AlbumDao(Connection connection) {
         this.connection = connection;
     }
 
-    public boolean add(Album album) throws SQLException{
+    public boolean add(Album album) throws SQLException {
         String sql = "INSERT INTO album (title, id_client, ISRC) VALUES (?,?,?)";
         //ponemos null para no tener que darle ningu paramentro
         PreparedStatement statement = null;
@@ -45,7 +45,7 @@ public class AlbumDao {
 
     }
 
-    public ArrayList getAll()throws SQLException {
+    public ArrayList getAll() throws SQLException {
 
         String sql = "SELECT * FROM album";
         PreparedStatement statement = null;
@@ -54,11 +54,9 @@ public class AlbumDao {
 
         result = statement.executeQuery();
 
-        System.out.println("conexion realizada con éxito");
-
         //CREAMOS ARRAYLIST PARA GUARDAR TODOS LOS OBJETOS CREADOS EN EL BUCLE
         ArrayList<Album> albumList = new ArrayList<>();
-        while (result.next()){
+        while (result.next()) {
 
             //creo objeto Album para añadirle los datos de la BD
             Album album = new Album();
@@ -84,14 +82,43 @@ public class AlbumDao {
         return albumList;
     }
 
-    //devuelve un único juego
-    public Album get (int id){
+    //devuelve un único juego por id_cliente
 
-        return null;
+    public ArrayList get(int id) throws SQLException {
+        String sql = "SELECT * FROM album WHERE id_client = ?";
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        result = statement.executeQuery();
+
+        ArrayList<Album> albumListById = new ArrayList<>();
+
+        while (result.next()) {
+
+            Album album = new Album();
+
+            album.setId_album(result.getInt("id_album"));
+            album.setTitle(result.getString("title"));
+            album.setExplicit(result.getBoolean("explicit"));
+            album.setDuration(result.getFloat("duration"));
+            album.setArtist(result.getString("artist"));
+            album.setGenre(result.getString("genre"));
+            album.setUrl_cover(result.getString("url_cover"));
+            album.setId_client(result.getInt("id_client"));
+            album.setId_employee(result.getInt("id_employee"));
+            album.setISRC(result.getString("ISRC"));
+            album.setRelease_date(result.getDate("release_date"));
+
+            albumListById.add(album);
+        }
+        statement.close();
+
+        return albumListById;
     }
 
 
-    public void modify(){
+    public void modify() {
 
     }
 
@@ -106,7 +133,7 @@ public class AlbumDao {
         int affectedRows = statement.executeUpdate();
 
         //SI HAY INEAS AFECTADAS, DE VOLVERA TRUE PORQUE ES DISTINDO QUE 0.
-        return  affectedRows != 0;
+        return affectedRows != 0;
 
     }
 }
