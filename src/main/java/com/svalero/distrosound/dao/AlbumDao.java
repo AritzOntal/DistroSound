@@ -54,8 +54,6 @@ public class AlbumDao {
 
         result = statement.executeQuery();
 
-        System.out.println("conexion realizada con éxito");
-
         //CREAMOS ARRAYLIST PARA GUARDAR TODOS LOS OBJETOS CREADOS EN EL BUCLE
         ArrayList<Album> albumList = new ArrayList<>();
         while (result.next()) {
@@ -84,10 +82,39 @@ public class AlbumDao {
         return albumList;
     }
 
-    //devuelve un único juego
-    public Album get(int id) {
+    //devuelve un único juego por id_cliente
 
-        return null;
+    public ArrayList get(int id) throws SQLException {
+        String sql = "SELECT * FROM album WHERE id_client = ?";
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        result = statement.executeQuery();
+
+        ArrayList<Album> albumListById = new ArrayList<>();
+
+        while (result.next()) {
+
+            Album album = new Album();
+
+            album.setId_album(result.getInt("id_album"));
+            album.setTitle(result.getString("title"));
+            album.setExplicit(result.getBoolean("explicit"));
+            album.setDuration(result.getFloat("duration"));
+            album.setArtist(result.getString("artist"));
+            album.setGenre(result.getString("genre"));
+            album.setUrl_cover(result.getString("url_cover"));
+            album.setId_client(result.getInt("id_client"));
+            album.setId_employee(result.getInt("id_employee"));
+            album.setISRC(result.getString("ISRC"));
+            album.setRelease_date(result.getDate("release_date"));
+
+            albumListById.add(album);
+        }
+        statement.close();
+
+        return albumListById;
     }
 
 

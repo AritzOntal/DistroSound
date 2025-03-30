@@ -12,8 +12,10 @@
 </head>
 
 <body>
+
 <jsp:include page="includes/navbar.jsp"/>
-<div class="bg-custom">
+
+<div class="bg-custom-index">
     <div class="container-centered">
         <div class="card p-4 shadow-lg" style="width: 350px;">
             <div class="card-body">

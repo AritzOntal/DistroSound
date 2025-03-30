@@ -3,16 +3,32 @@
      height: 100%;
  }
 
+ img {
+     max-width: 100%;
+     height: auto;
+ }
+
  .container-centered {
      height: 100vh;
      display: flex;
      justify-content: center;
      align-items: center;
-     background-color: #f8f9fa;
  }
 
- .bg-custom-client {
+ .bg-custom {
+     background-color: beige;
+ }
+
+ .bg-custom-index {
      background-image: url("../images/clay-banks-fEVaiLwWvlU-unsplash.jpg");
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     min-height: 100vh;
+ }
+
+ .bg-custom-client-zone {
+     background-color: azure;
      background-size: cover;
      background-position: center;
      background-repeat: no-repeat;
@@ -32,3 +48,8 @@
      border-radius: 10px;
      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
  }
+
+ .col {
+         transform: scale(0.9); /* Reduce el tamaño al 80% */
+ }
+

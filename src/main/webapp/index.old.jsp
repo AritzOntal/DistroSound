@@ -45,15 +45,12 @@
 
         } catch (SQLException sqle) {
         %>
-
             <div class="alert alert-danger" role="alert">
                 No se ha podido conectar a la base de datos.
             </div>
 
                 <%
-
         }
-
         %>
     </ul>
 </div>

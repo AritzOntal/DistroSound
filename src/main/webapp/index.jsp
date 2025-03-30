@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="includes/navbar.jsp"/>
 
-<div class="bg-custom-client">
+<div class="bg-custom-index">
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card p-4 shadow-lg" style="width: 500px;">
             <div class="card-body">
@@ -61,6 +61,6 @@
         </div>
     </div>
 </div>
-
 </body>
+
 </html>

@@ -1,3 +1,7 @@
+<%@ page import="com.svalero.distrosound.database.Database" %>
+<%@ page import="com.svalero.distrosound.dao.AlbumDao" %>
+<%@ page import="com.svalero.distrosound.model.Album" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,68 +20,68 @@
 <jsp:include page="includes/navbar.jsp"/>
 
 
-<div class="bg-custom-client">
-
-    <div class="container px-4 py-5" id="featured-3">
+<div class="bg-custom-client-zone">
+    <div class="container px-4 py-5 " id="featured-3">
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="feature col">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                    <svg class="bi" width="1em" height="1em">
-                        <use xlink:href="#collection"/>
-                    </svg>
+                <div class="bg-white p-4 rounded shadow-lg">
+                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    </div>
+                    <h3 class="fs-2 text-body-emphasis">Subir Album</h3>
+                    <p>Sube tus discos aquí para solicitar después un lanzamiento a tu distribuidor.</p>
+                    <a href="#" class="icon-link">
+                        SUBIR
+                    </a>
                 </div>
-                <h3 class="fs-2 text-body-emphasis">Featured title</h3>
-                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence
-                    and probably just keep going until we run out of words.</p>
-                <a href="#" class="icon-link">
-                    Call to action
-                    <svg class="bi">
-                        <use xlink:href="#chevron-right"/>
-                    </svg>
-                </a>
             </div>
             <div class="feature col">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                    <svg class="bi" width="1em" height="1em">
-                        <use xlink:href="#people-circle"/>
-                    </svg>
+                <div class="bg-white p-4 rounded shadow-lg">
+                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    </div>
+                    <h3 class="fs-2 text-body-emphasis">Solicitar lanzamiento</h3>
+                    <p>Lanza tu álbum en todas las plataformas digitales (Spotify, Apple Music, TIDAL... etc).</p>
+                    <a href="#" class="icon-link">
+                        LANZAR
+                    </a>
                 </div>
-                <h3 class="fs-2 text-body-emphasis">Featured title</h3>
-                <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence
-                    and probably just keep going until we run out of words.</p>
-                <a href="#" class="icon-link">
-                    Call to action
-                    <svg class="bi">
-                        <use xlink:href="#chevron-right"/>
-                    </svg>
-                </a>
             </div>
         </div>
         <div>
-            <h2 class="pb-2 border-bottomx">Tu música</h2>
+            <h2 class="pb-2 border-bottomx">Pendientes de lanzamiento</h2>
         </div>
-    </div>
-    <div class="container">
+        <div class="container">
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Album"
-                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"/>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                    </svg>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
-                                <button type="button" class="btn btn-sm btn-outline-warning">Modificar</button>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <%
+                    int idClient;
+                    Database database = new Database();
+                    database.connect();
+                    AlbumDao albumDao = new AlbumDao(database.getConnection());
+                    List<Album> albumListById = albumDao.get(2);
+                    for (Album album : albumListById) {
+                %>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="<%= album.getUrl_cover() %>" alt="Imagen desde BD">
+                        <div class="card-body">
+                            <h3 class="card-text"><%=album.getTitle()%>
+                            </h3>
+                            <p class="card-text"><%=album.getArtist()%>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-success">Solicitar Lanzamineto
+                                    </button>
+                                </div>
                             </div>
-                            <small class="text-body-secondary">9 mins</small>
                         </div>
                     </div>
                 </div>
+                <%
+                    }
+                %>
             </div>
         </div>
     </div>
