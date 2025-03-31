@@ -39,7 +39,6 @@ public class UserDao {
 
     //devuelve un único cliente
     public User get (int id){
-
         return null;
     }
 

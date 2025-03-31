@@ -6,6 +6,19 @@
 
 <div class="bg-custom-index">
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+
+        <%
+            HttpSession currentSession = request.getSession();
+            String role = "anonymous";
+            String name;
+            if (currentSession.getAttribute("role") != null) {
+                role = currentSession.getAttribute("role").toString();
+            }
+
+            if (role.equals("anonymous")) {
+        %>
+
+
         <div class="card p-4 shadow-lg" style="width: 500px;">
             <div class="card-body">
                 <h1 class="h3 mb-3 fw-normal text-center">Distro Sound</h1>
@@ -51,6 +64,21 @@
         </div>
     </div>
 </div>
+
+<%
+} else {
+
+    name = currentSession.getAttribute("username").toString();
+
+%>
+<h1 style="color: white">Bienvenid@ <%=name%></h1>
+
+<%
+
+    }
+
+%>
+
 </body>
 
 </html>

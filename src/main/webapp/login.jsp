@@ -18,7 +18,7 @@
                         if (response === "ok") {
                             window.location.href = "client.zone.jsp";
                         } else {
-                            $("#result").html(response);
+                            $("#result").html();
                         }
                     }
                 }
@@ -34,24 +34,26 @@
         <div class="card p-4 shadow-lg" style="width: 350px;">
             <div class="card-body">
                 <h1 class="h3 mb-3 fw-normal text-center">Indetifícate</h1>
-                    <form>
-                        <div class="form-floating mb-2">
-                            <input type="text" name="username" class="form-control" id=username placeholder="Nombre de usuario">
-                            <label for="username">username</label>
-                        </div>
-                        <div class="form-floating mb-2">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
-                            <label for="password">password</label>
-                        </div>
-                        <div class="form-check text-start my-3">
-                            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">Recordarme</label>
-                        </div>
-                        <button class="btn btn-primary w-100 py-2" type="submit">Iniciar sesión</button>
-                        <div id="result" class="alert alert-danger" role="alert">
-                            El usuario o contraseña son incorrectos!
-                        </div>
-                    </form>
+                <form>
+                    <div class="form-floating mb-2">
+                        <input type="text" name="username" class="form-control" id=username
+                               placeholder="Nombre de usuario">
+                        <label for="username">username</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="password" name="password" class="form-control" id="password"
+                               placeholder="Contraseña">
+                        <label for="password">password</label>
+                    </div>
+                    <div class="form-check text-start my-3">
+                        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Recordarme</label>
+                    </div>
+                    <button class="btn btn-primary w-100 py-2" type="submit">Iniciar sesión</button>
+                    <div id="result" class="alert alert-danger" role="alert" style="display: none">
+                        El usuario o contraseña son incorrectos!
+                    </div>
+                </form>
                 <p class="mt-3 mb-0 text-center text-body-secondary">&copy; 2017–2024</p>
             </div>
         </div>
