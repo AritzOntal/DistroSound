@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class Client {
     private int id_client;
-    private String IBAN, name, last_name, legion, email, DNI;
+    private String IBAN, name, last_name, legion, email, DNI, username, password;
     private LocalDate birth_date;
     private boolean premium;
     private float balance;

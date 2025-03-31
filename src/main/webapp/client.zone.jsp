@@ -2,7 +2,7 @@
 <%@ page import="com.svalero.distrosound.dao.AlbumDao" %>
 <%@ page import="com.svalero.distrosound.model.Album" %>
 <%@ page import="java.util.List" %>
-<jsp:include page="includes/head.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 

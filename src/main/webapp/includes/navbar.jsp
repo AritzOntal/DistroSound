@@ -9,7 +9,7 @@
                 <li class="nav-item"><a class="nav-link" href="store.jsp">Tienda</a></li>
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="index.jsp">Soy Artista</a></li>
                 <li class="nav-item"><a class="nav-link" href="regis.distr.jsp">Soy Distribuidor</a></li>
-                <li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
             </ul>
         </div>
     </div>
