@@ -1,7 +1,8 @@
 package com.svalero.distrosound.servlet;
 
-import com.svalero.distrosound.dao.ClientDao;
+import com.svalero.distrosound.dao.UserDao;
 import com.svalero.distrosound.database.Database;
+import com.svalero.distrosound.exception.UserNotFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,25 +22,17 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-
             Database database = new Database();
             database.connect();
-            ClientDao clientDao = new ClientDao(database.getConnection());
-            boolean clientTrue = clientDao.loginClient(username, password);
-            if (!clientTrue) {
-                response.getWriter().println("Usuario/contraseña incorrectos");
-
-                return;
-
-            } else {
+            UserDao userDao = new UserDao(database.getConnection());
+            String role = userDao.loginUser(username, password);
                 //CREAR LA SESION
                 HttpSession session = request.getSession();
                 //GUARDAR SU USUARIO
                 session.setAttribute("username", username);
-                //TODO AÑADIR EL ROL
+                session.setAttribute("role", role);
                 //llevar al pagina home
                 response.getWriter().print("ok");
-            }
 
             database.close();
 
@@ -50,6 +43,9 @@ public class LoginServlet extends HttpServlet {
             cnfe.printStackTrace();
 
         } catch (IOException ioe) {
+
+        } catch (UserNotFoundException unfe){
+            response.getWriter().println ("Usuario/contraseña incorrectos");
 
         }
     }

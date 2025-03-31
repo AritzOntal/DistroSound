@@ -1,5 +1,5 @@
-<%@ page import="com.svalero.distrosound.model.Client" %>
-<%@ page import="com.svalero.distrosound.dao.ClientDao" %>
+<%@ page import="com.svalero.distrosound.model.User" %>
+<%@ page import="com.svalero.distrosound.dao.UserDao" %>
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 

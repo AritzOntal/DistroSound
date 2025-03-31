@@ -20,7 +20,7 @@
 
             Album verAlbum = albumDao.getById(albumId);
     %>
-    <div class="container-centered">
+    <div class="container-p4">
         <div class="card" style="width: 40rem;">
             <img src="<%=verAlbum.getUrl_cover()%>" class="card-img-top" alt="...">
             <div class="card-body">

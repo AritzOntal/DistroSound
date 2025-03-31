@@ -6,14 +6,14 @@ import java.time.LocalDate;
 
 @Data
 
-public class Client {
-    private int id_client;
-    private String IBAN, name, last_name, legion, email, DNI, username, password;
+public class User {
+    private int id;
+    private String IBAN, name, last_name, legion, email, DNI, username, password, rol;
     private LocalDate birth_date;
     private boolean premium;
     private float balance;
 
-    public Client(){
+    public User(){
 
     }
 }
