@@ -30,7 +30,7 @@ public class AlbumDao {
         statement = connection.prepareStatement(sql);
 
         statement.setString(1, album.getTitle());
-        statement.setInt(2, album.getId_client());
+        statement.setInt(2, album.getId_artist());
         statement.setString(3, album.getISRC());
 
         //UPDATE, INSERT, DELETE SE EJEVUTAN CON ESTE
@@ -66,7 +66,7 @@ public class AlbumDao {
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
             album.setUrl_cover(result.getString("url_cover"));
-            album.setId_client(result.getInt("id_client"));
+            album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
             album.setISRC(result.getString("ISRC"));
             album.setRelease_date(result.getDate("release_date"));
@@ -82,7 +82,7 @@ public class AlbumDao {
 
     //devuelve TODOS los juegos que ha subido un cliente
     public ArrayList get(int id) throws SQLException {
-        String sql = "SELECT * FROM album WHERE id_client = ?";
+        String sql = "SELECT * FROM album WHERE id_artist = ?";
         PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class AlbumDao {
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
             album.setUrl_cover(result.getString("url_cover"));
-            album.setId_client(result.getInt("id_client"));
+            album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
             album.setISRC(result.getString("ISRC"));
             album.setRelease_date(result.getDate("release_date"));
@@ -134,7 +134,7 @@ public class AlbumDao {
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
             album.setUrl_cover(result.getString("url_cover"));
-            album.setId_client(result.getInt("id_client"));
+            album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
             album.setISRC(result.getString("ISRC"));
             album.setRelease_date(result.getDate("release_date"));

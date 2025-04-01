@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class Employee {
 
-    private String name, last_name, email, speciality;
+    private String name, last_name, email, speciality, username, password;
     private boolean distributor;
     private LocalDate hiring_date;
     private int id_employee;

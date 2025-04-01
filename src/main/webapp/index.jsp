@@ -12,7 +12,7 @@
                 statusCode: {
                     200: function (response) {
                         if (response === "ok") {
-                            window.location.href = "client.zone.jsp";
+                            window.location.href = "store.jsp";
                         } else {
                             $("#result").html("Error al crear el usuario!").show();
                         }
@@ -33,6 +33,7 @@
             HttpSession currentSession = request.getSession();
             String role = "anonymous";
             String name;
+
             if (currentSession.getAttribute("role") != null) {
                 role = currentSession.getAttribute("role").toString();
             }
@@ -79,7 +80,7 @@
                         <button type="submit" class="btn btn-success w-100">Registrarse</button>
                     </div>
                     <div id="result" class="alert alert-danger" role="alert" style="display: none">
-                        NO se ha podido crear el usuario!
+                        No se ha podido crear el usuario!
                     </div>
                 </form>
             </div>

@@ -16,7 +16,7 @@
                 statusCode: {
                     200: function (response) {
                         if (response === "ok") {
-                            window.location.href = "client.zone.jsp";
+                            window.location.href = "index.jsp";
                         } else {
                             $("#result").html();
                         }
