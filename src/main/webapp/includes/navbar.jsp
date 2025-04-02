@@ -12,8 +12,9 @@
                 <%
                     HttpSession currentSession = request.getSession();
 
-                    Integer idArtist;
+                    Integer idArtist, idEmployee;
                     idArtist = (Integer) currentSession.getAttribute("id_artist");
+                    idEmployee = (Integer) currentSession.getAttribute("id_employee");
 
                     String role = "anonymous";
                     if (currentSession.getAttribute("role") != null) {

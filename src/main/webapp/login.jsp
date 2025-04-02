@@ -1,31 +1,9 @@
 <%@ page import="com.svalero.distrosound.model.User" %>
 <%@ page import="com.svalero.distrosound.dao.UserDao" %>
-<jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%--Hago una funcion asincrona, para que el envio del formulario espere a la respuesta del servidor
-              antes de ir a lo loco.--%>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("form").on("submit", function (event) {
-            event.preventDefault();
-            const formValue = $(this).serialize();
-            $.ajax("login", {
-                type: "POST",
-                data: formValue,
-                statusCode: {
-                    200: function (response) {
-                        if (response === "ok") {
-                            window.location.href = "index.jsp";
-                        } else {
-                            $("#result").html();
-                        }
-                    }
-                }
-            });
-        });
-    });
-</script>
+<jsp:include page="includes/header.jsp"/>
+<% request.setAttribute("mappServlet", "login"); %>
+<jsp:include page="includes/ajax.jsp"/>
 
 <body>
 <jsp:include page="includes/navbar.jsp"/>

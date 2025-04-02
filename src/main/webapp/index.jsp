@@ -1,27 +1,11 @@
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("form").on("submit", function (event) {
-            event.preventDefault();
-            const formValue = $(this).serialize();
-            $.ajax("artist", {
-                type: "POST",
-                data: formValue,
-                statusCode: {
-                    200: function (response) {
-                        if (response === "ok") {
-                            window.location.href = "store.jsp";
-                        } else {
-                            $("#result").html("Error al crear el usuario!").show();
-                        }
-                    }
-                }
-            });
-        });
-    });
-</script>
+<%
+    HttpSession currentSession = request.getSession();
+    String mappServlet = "artist";
+    request.setAttribute("mappServlet", mappServlet);
+%>
+<jsp:include page="includes/ajax.jsp"/>
 
 <body>
 <jsp:include page="includes/navbar.jsp"/>
@@ -30,17 +14,13 @@
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
 
         <%
-            HttpSession currentSession = request.getSession();
             String role = "anonymous";
             String name;
-
             if (currentSession.getAttribute("role") != null) {
                 role = currentSession.getAttribute("role").toString();
             }
-
             if (role.equals("anonymous")) {
         %>
-
 
         <div class="card p-4 shadow-lg" style="width: 500px;">
             <div class="card-body">
@@ -90,18 +70,12 @@
 
 <%
 } else {
-
     name = currentSession.getAttribute("username").toString();
-
 %>
-<h1 style="color: white">Bienvenid@ <%=name%></h1>
-
+<h1 style="color: white">Bienvenid@ <%=name%>
+</h1>
 <%
-
     }
-
 %>
-
 </body>
-
 </html>

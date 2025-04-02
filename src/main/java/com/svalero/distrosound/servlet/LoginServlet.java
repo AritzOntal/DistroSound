@@ -31,10 +31,14 @@ public class LoginServlet extends HttpServlet {
             EmployeeDao employeeDao = new EmployeeDao(database.getConnection());
             ArtistDao artistDao = new ArtistDao(database.getConnection());
             String role = null;
-            Integer idArtist = artistDao.getArtistIdByUsername(username);
+
+                Integer idArtist = artistDao.getArtistIdByUsername(username);
+
 
             try {
+
                 role = employeeDao.loginEmployee(username, password);
+
             } catch (EmployeeNotFoundException e) {
 
             }
