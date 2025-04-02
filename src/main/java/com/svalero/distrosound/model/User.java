@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 public class User {
     private int id;
-    private String IBAN, name, last_name, legion, email, DNI, username, password, rol;
+    private String IBAN, name, last_name, region, email, DNI, username, password, rol;
     private LocalDate birth_date;
-    private boolean premium;
+    private boolean distributor;
     private float balance;
 
     public User(){

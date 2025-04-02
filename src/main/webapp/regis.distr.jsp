@@ -1,6 +1,9 @@
 
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% request.setAttribute("mappServlet", "employee"); %>
+<jsp:include page="includes/ajax.jsp"/>
+
 
 <body>
 <jsp:include page="includes/navbar.jsp"/>
@@ -14,27 +17,28 @@
 
                 <form class="row g-3">
                     <div class="col-12">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="inputEmail">
                     </div>
                     <div class="col-12">
-                        <label for="inputPassword4" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4">
+                        <label for="inputLastName" class="form-label">Name</label>
+                        <input type="text" name="nombre" class="form-control" id="inputLastName">
                     </div>
                     <div class="col-12">
-                        <label for="inputAddress" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <label for="inputLastName" class="form-label">Last Name</label>
+                        <input type="text" name="apellidos" class="form-control" id="inputLastName">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="inputemail2">
                     </div>
                     <div class="col-md-6">
-                        <label for="inputCity" class="form-label">City</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <label for="inputUserName" class="form-label">User name</label>
+                        <input type="text" name="username" class="form-control" id="inputUsername">
                     </div>
                     <div class="col-md-6">
-                        <label for="inputState" class="form-label">State</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
+                        <label for="inputPassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword">
                     </div>
                     <div class="col-12">
                         <div class="form-check">
@@ -45,7 +49,10 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-success w-100">Registrarse</button>
+                        <button type="submit" class="btn btn-success w-100">Comenzar</button>
+                    </div>
+                    <div id="result" class="alert alert-danger" role="alert" style="display: none">
+                        No se ha podido crear el usuario!
                     </div>
                 </form>
             </div>

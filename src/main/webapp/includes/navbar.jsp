@@ -11,8 +11,13 @@
 
                 <%
                     HttpSession currentSession = request.getSession();
+
+                    Integer idArtist, idEmployee;
+                    idArtist = (Integer) currentSession.getAttribute("id_artist");
+                    idEmployee = (Integer) currentSession.getAttribute("id_employee");
+
                     String role = "anonymous";
-                    if (currentSession.getAttribute("role") !=null){
+                    if (currentSession.getAttribute("role") != null) {
                         role = currentSession.getAttribute("role").toString();
                     }
 
@@ -22,16 +27,22 @@
                 <li class="nav-item"><a class="nav-link" href="regis.distr.jsp">Soy Distribuidor</a></li>
                 <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
                 <%
-                    } else {
+                    }
+                    if (role.equals("artist")) {
                 %>
 
-                <li class="nav-item"><a class="nav-link" href="client.zone.jsp">Mi zona</a></li>
+                <li class="nav-item"><a class="nav-link" href="client.zone.jsp?=<%=idArtist%>">Mi zona</a></li>
                 <li class="nav-item"><a class="nav-link" href="/DistroSound/logout">Logout</a></li>
 
                 <%
                     }
+                    if (role.equals("employee")) {
                 %>
-
+                <li class="nav-item"><a class="nav-link" href="employee.zone.jsp">Zona SOCIO</a></li>
+                <li class="nav-item"><a class="nav-link" href="/DistroSound/logout">Logout</a></li>
+                <%
+                    }
+                %>
             </ul>
         </div>
     </div>
