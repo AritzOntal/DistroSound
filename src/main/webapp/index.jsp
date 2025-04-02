@@ -5,9 +5,9 @@
     String mappServlet = "artist";
     request.setAttribute("mappServlet", mappServlet);
 %>
-<jsp:include page="includes/ajax.jsp"/>
 
 <body>
+<jsp:include page="includes/ajax.jsp"/>
 <jsp:include page="includes/navbar.jsp"/>
 
 <div class="bg-custom-index">

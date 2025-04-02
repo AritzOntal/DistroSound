@@ -2,10 +2,9 @@
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% request.setAttribute("mappServlet", "employee"); %>
-<jsp:include page="includes/ajax.jsp"/>
-
 
 <body>
+<jsp:include page="includes/ajax.jsp"/>
 <jsp:include page="includes/navbar.jsp"/>
 <div class="bg-custom-employee">
 
@@ -22,15 +21,11 @@
                     </div>
                     <div class="col-12">
                         <label for="inputLastName" class="form-label">Name</label>
-                        <input type="text" name="nombre" class="form-control" id="inputLastName">
+                        <input type="text" name="nombre" class="form-control" id="inputLfdsastName">
                     </div>
                     <div class="col-12">
                         <label for="inputLastName" class="form-label">Last Name</label>
                         <input type="text" name="apellidos" class="form-control" id="inputLastName">
-                    </div>
-                    <div class="col-12">
-                        <label for="inputEmail" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" id="inputemail2">
                     </div>
                     <div class="col-md-6">
                         <label for="inputUserName" class="form-label">User name</label>
@@ -59,7 +54,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

@@ -6,10 +6,7 @@ import com.svalero.distrosound.exception.UserNotFoundException;
 import com.svalero.distrosound.model.Artist;
 import com.svalero.distrosound.model.Employee;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class EmployeeDao {
@@ -23,7 +20,7 @@ public class EmployeeDao {
 
     public boolean add(Employee employee) throws SQLException {
         String sql = "INSERT INTO employee (name, last_name, username, password, email) VALUES (?,?,?,SHA1(?),?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, employee.getName());
         statement.setString(2, employee.getLast_name());
         statement.setString(3, employee.getUsername());
@@ -31,8 +28,16 @@ public class EmployeeDao {
         statement.setString(5, employee.getEmail());
 
         int affectedRows = statement.executeUpdate();
-
-        return affectedRows != 0;
+        if (affectedRows > 0) {
+            // Recuperamos el ID generado automáticamente
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idEmployee = generatedKeys.getInt(1);
+                    employee.setId_employee(Integer.valueOf(idEmployee));
+                }
+            }
+        }
+        return affectedRows > 0;
     }
 
     public boolean exists(String username) throws SQLException, EmployeeNotFoundException {

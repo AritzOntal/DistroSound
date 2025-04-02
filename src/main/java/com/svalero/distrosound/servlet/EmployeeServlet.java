@@ -2,11 +2,13 @@ package com.svalero.distrosound.servlet;
 
 import com.svalero.distrosound.dao.ArtistDao;
 import com.svalero.distrosound.dao.EmployeeDao;
+import com.svalero.distrosound.dao.RegistrationDao;
 import com.svalero.distrosound.database.Database;
 import com.svalero.distrosound.exception.ArtistNotFoundException;
 import com.svalero.distrosound.exception.EmployeeNotFoundException;
 import com.svalero.distrosound.model.Artist;
 import com.svalero.distrosound.model.Employee;
+import com.svalero.distrosound.model.Registration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 @WebServlet("/employee")
 
@@ -30,6 +33,7 @@ public class EmployeeServlet extends HttpServlet {
             Database database = new Database();
             database.connect();
             EmployeeDao employeeDao = new EmployeeDao(database.getConnection());
+            RegistrationDao registrationDao = new RegistrationDao(database.getConnection());
 
             if (employeeDao.exists(username)) {
                 response.getWriter().print("error: Usuario ya registrado");
@@ -45,6 +49,18 @@ public class EmployeeServlet extends HttpServlet {
             employee.setEmail(email);
 
             employeeDao.add(employee);
+
+            Registration registration = new Registration();
+
+            registration.setTipe("employee");
+            registration.setCost(9.99f);
+            registration.setRegist_date(LocalDate.now());
+            registration.setPremium(false);
+            registration.setId_employee(employee.getId_employee());
+            registration.setId_artist(null);
+
+
+            registrationDao.add(registration);
 
             response.getWriter().print("ok");
 

@@ -3,7 +3,8 @@
     $("form").on("submit", function (event) {
       event.preventDefault();
       const formValue = $(this).serialize();
-      $.ajax("<%= request.getAttribute("mappServlet")%>", {
+      var servletMapping = "<%= request.getAttribute("mappServlet")%>"
+        $.ajax(servletMapping, {
         type: "POST",
         data: formValue,
         statusCode: {

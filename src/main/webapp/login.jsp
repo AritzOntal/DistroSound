@@ -3,9 +3,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="includes/header.jsp"/>
 <% request.setAttribute("mappServlet", "login"); %>
-<jsp:include page="includes/ajax.jsp"/>
 
 <body>
+<jsp:include page="includes/ajax.jsp"/>
 <jsp:include page="includes/navbar.jsp"/>
 <div class="bg-custom-index">
     <div class="container-centered">
