@@ -34,7 +34,6 @@ public class LoginServlet extends HttpServlet {
 
                 Integer idArtist = artistDao.getArtistIdByUsername(username);
 
-
             try {
 
                 role = employeeDao.loginEmployee(username, password);
