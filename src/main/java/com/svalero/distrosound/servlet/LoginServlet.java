@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
             String role = null;
 
                 Integer idArtist = artistDao.getArtistIdByUsername(username);
+                Integer idEmployee = employeeDao.getEmployeeIdByUsername(username);
 
             try {
 
@@ -54,6 +55,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
             session.setAttribute("role", role);
             session.setAttribute("id_artist", idArtist);
+            session.setAttribute("id_employee", idEmployee);
 
             response.getWriter().print("ok");
 

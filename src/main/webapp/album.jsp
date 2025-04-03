@@ -3,8 +3,6 @@
 <%@ page import="com.svalero.distrosound.model.Album" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.svalero.distrosound.exception.albumNotFoundException" %>
-<!DOCTYPE html>
-<html lang="es">
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="includes/navbar.jsp"/>

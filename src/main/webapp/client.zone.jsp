@@ -9,6 +9,11 @@
 
 <body>
 
+<% HttpSession session1 = request.getSession(false);
+if (session1 != null && session1.getAttribute("id_artist") != null) {
+
+%>
+
 <jsp:include page="includes/navbar.jsp"/>
 
 <div class="bg-custom-client-zone">
@@ -71,5 +76,13 @@
         </div>
     </div>
 </div>
+<%
+    } else {
+
+        response.sendRedirect("login.jsp");
+
+    }
+
+%>
 
 </body>

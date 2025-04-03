@@ -2,6 +2,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <body>
+
+<% HttpSession session1 = request.getSession(false);
+    if (session1 != null && session1.getAttribute("id_employee") != null) {
+
+%>
+
 <jsp:include page="includes/navbar.jsp"/>
 
 <div class="bg-custom-employee">
@@ -31,5 +37,11 @@
         </div>
     </div>
 </div>
+
+<%
+    } else {
+        response.sendRedirect("login.jsp");
+    }
+%>
 
 </body>

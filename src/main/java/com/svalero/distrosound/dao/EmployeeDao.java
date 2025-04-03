@@ -60,6 +60,19 @@ public class EmployeeDao {
         return result.getString("role");
     }
 
+    public Integer getEmployeeIdByUsername(String username) throws SQLException {
+        String sql = "SELECT id_employee FROM employee WHERE username = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, username);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getInt("id");
+        } else {
+            return null;
+        }
+    }
+
     public ArrayList getAll(){
 
         return null;
