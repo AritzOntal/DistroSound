@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.concurrent.ExecutionException;
@@ -23,18 +24,21 @@ public class AlbumDao {
     }
 
     public boolean add(Album album) throws SQLException {
-        String sql = "INSERT INTO album (title, id_client, ISRC) VALUES (?,?,?)";
-        //ponemos null para no tener que darle ningu paramentro
-        PreparedStatement statement = null;
-        //ahora le damos el parametro con connection y nuestra variable de consulta para prepararlo y darle parametros.
-        statement = connection.prepareStatement(sql);
+        String sql = "INSERT INTO album (title, artist, genre, ISRC, description, explicit, price, url_cover, uploaded, id_artist) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement statement = statement = connection.prepareStatement(sql);
 
         statement.setString(1, album.getTitle());
-        statement.setInt(2, album.getId_artist());
-        statement.setString(3, album.getISRC());
+        statement.setString(2, album.getArtist());
+        statement.setString(3, album.getGenre());
+        statement.setString(4, album.getISRC());
+        statement.setString(5, album.getDescription());
+        statement.setBoolean(6, album.getExplicit());
+        statement.setFloat(7, album.getPrice());
+        statement.setString(8, album.getUrl_cover());
+        statement.setDate(9, java.sql.Date.valueOf(album.getUploaded()));
+        statement.setInt(10, album.getId_artist());
 
         //UPDATE, INSERT, DELETE SE EJEVUTAN CON ESTE
-
         int affectedRows = statement.executeUpdate();
         //execute.query PARA LAS CONSULTAS SELECT
 
@@ -80,7 +84,7 @@ public class AlbumDao {
         return albumList;
     }
 
-    //devuelve TODOS los juegos que ha subido un cliente
+    //devuelve TODOS los albunes que ha subido un cliente
     public ArrayList get(int id) throws SQLException {
         String sql = "SELECT * FROM album WHERE id_artist = ?";
         PreparedStatement statement = null;
@@ -114,10 +118,10 @@ public class AlbumDao {
         return albumListById;
     }
 
-    //Devuelve un juego por ID
+    //Devuelve un album por ID artista
     public Album getById(int id) throws SQLException, albumNotFoundException {
 
-        String sql = "SELECT * FROM album WHERE id_album = ?";
+        String sql = "SELECT * FROM album WHERE id_artist = ?";
         PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);

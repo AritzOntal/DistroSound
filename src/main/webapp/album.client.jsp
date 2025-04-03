@@ -29,11 +29,11 @@
                 </p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Año lanzamiento: <%=verAlbum.getRelease_date()%>
+                <li class="list-group-item">Fecha de subida: <%=verAlbum.getUploaded()%>
                 </li>
                 <li class="list-group-item">Género: <%=verAlbum.getGenre()%>
                 </li>
-                <li class="list-group-item">Explícito: <%=verAlbum.isExplicit()%>
+                <li class="list-group-item">Explícito: <%=verAlbum.getExplicit()%>
                 </li>
                 <li class="list-group-item">ISRC: <%=verAlbum.getISRC()%>
                 </li>

@@ -11,6 +11,7 @@
 
 <% HttpSession session1 = request.getSession(false);
 if (session1 != null && session1.getAttribute("id_artist") != null) {
+int idArtist = (int) session1.getAttribute("id_artist");
 
 %>
 
@@ -25,7 +26,7 @@ if (session1 != null && session1.getAttribute("id_artist") != null) {
                     </div>
                     <h3 class="fs-2 text-body-emphasis">Subir Album</h3>
                     <p>Sube tus discos aquí para solicitar después un lanzamiento a tu distribuidor.</p>
-                    <a href="new.album.jsp" class="icon-link">
+                    <a href="new.album.jsp?id_artist=<%=idArtist%>" class="icon-link">
                         SUBIR
                     </a>
                 </div>
@@ -39,12 +40,11 @@ if (session1 != null && session1.getAttribute("id_artist") != null) {
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <%
-                    int idArtist;
                     Database database = new Database();
                     database.connect();
                     AlbumDao albumDao = new AlbumDao(database.getConnection());
                     //TODO RECOGER EL ID DEL ARTISTA PARA VER SUS ALBUNES
-                    List<Album> albumListById = albumDao.get(1);
+                    List<Album> albumListById = albumDao.get(idArtist);
                     for (Album album : albumListById) {
                 %>
                 <div class="col">

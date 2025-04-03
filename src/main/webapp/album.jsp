@@ -32,7 +32,7 @@
                 </li>
                 <li class="list-group-item">Género: <%=verAlbum.getGenre()%>
                 </li>
-                <li class="list-group-item">Explícito: <%=verAlbum.isExplicit()%>
+                <li class="list-group-item">Explícito: <%=verAlbum.getExplicit()%>
                 </li>
                 <li class="list-group-item">Precio: <%=verAlbum.getPrice()%> €</li>
             </ul>
