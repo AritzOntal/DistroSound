@@ -67,7 +67,7 @@ public class EmployeeDao {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            return resultSet.getInt("id");
+            return resultSet.getInt("id_employee");
         } else {
             return null;
         }

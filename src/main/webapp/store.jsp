@@ -22,7 +22,7 @@
             %>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="<%= album.getUrl_cover() %>" alt="Imagen desde BD">
+                    <img src="../distrosound_images/<%= album.getImage() %>" alt="Imagen desde BD">
                     <div class="card-body">
                         <h3 class="card-text"><%=album.getTitle()%>
                         </h3>
@@ -30,10 +30,12 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="album.jsp?album_id=<%=album.getId_album()%>"type="button" class="btn btn-sm btn-outline-primary">Ver</a>
-                                <a href="album.jsp?album_id=<%=album.getId_album()%>" type="button" class="btn btn-sm btn-outline-success">Comprar</a>
+                                <a href="album.jsp?album_id=<%=album.getId_album()%>" type="button"
+                                   class="btn btn-sm btn-outline-primary">Ver</a>
+                                <a href="album.jsp?album_id=<%=album.getId_album()%>" type="button"
+                                   class="btn btn-sm btn-outline-success">Comprar</a>
                             </div>
-                            <small class="text-body-secondary"> <%=album.getPrice()%> €</small>
+                            <small class="text-body-secondary"><%=album.getPrice()%> €</small>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@
             if (response === "ok") {
               window.location.href = "index.jsp";
             } else {
-              $("#result").html("Error al crear el usuario!").show();
+              $("#result").html(response).show();
             }
           }
         }

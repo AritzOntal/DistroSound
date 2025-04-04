@@ -31,6 +31,19 @@ public class ArtistServlet extends HttpServlet {
         String last_name = request.getParameter("apellidos");
         String email = request.getParameter("email");
 
+        if (username == null || username.trim().isEmpty() ||
+                password == null || password.trim().isEmpty() ||
+                name == null || name.trim().isEmpty() ||
+                last_name == null || last_name.trim().isEmpty() ||
+                email == null || email.trim().isEmpty()) {
+            response.getWriter().write("No puede haber campos vacíos.");
+            return;
+
+        } else {
+
+        }
+
+
         try {
             Database database = new Database();
             database.connect();
@@ -79,6 +92,9 @@ public class ArtistServlet extends HttpServlet {
 
         } catch (ArtistNotFoundException arfe) {
             arfe.printStackTrace();
+
+        } catch (IllegalArgumentException iae) {
+            iae.printStackTrace();
         }
     }
 }

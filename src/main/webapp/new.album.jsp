@@ -2,9 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setAttribute("mappServlet", "newAlbum"); %>
 
-
 <body>
-<jsp:include page="includes/ajax.jsp"/>
+<jsp:include page="includes/ajax.data.jsp"/>
 <jsp:include page="includes/navbar.jsp"/>
 
 <% int idArtist = Integer.parseInt(request.getParameter("id_artist")); %>
@@ -18,8 +17,8 @@
                 <input type="text" name="titulo" class="form-control" placeholder="Ingrese el título">
             </div>
             <div class="mb-2">
-                   <label class="form-label">Artista</label>
-                   <input type="text" name="artista" class="form-control" placeholder="Nombre del artista">
+                <label class="form-label">Artista</label>
+                <input type="text" name="artista" class="form-control" placeholder="Nombre del artista">
             </div>
             <div class="mb-2">
                 <label class="form-label">Género</label>
@@ -27,7 +26,7 @@
             </div>
             <div class="mb-2">
                 <label class="form-label">Portada</label>
-                <input type="text" name="url_cover" class="form-control" placeholder="Ingrese la portada">
+                <input type="file" name="imagen" class="form-control" placeholder="Ingrese la portada">
             </div>
             <div class="mb-2">
                 <label class="form-label">ISRC</label>
@@ -45,17 +44,21 @@
                 <input type="number" name="precio" class="form-control" step="0.01" placeholder="Ej: 9.99">
             </div>
             <div class="mb-2">
-                 <label class="form-label">Id Artista</label>
-                 <input type="number" name="id_artist" value=<%=idArtist%> class="form-control">
+                <label class="form-label">Id Artista</label>
+                <input type="number" name="id_artist" value=<%=idArtist%> class="form-control">
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripción</label>
-                <textarea class="form-control" name="descripcion" rows="3" placeholder="Escribe una descripción..."></textarea>
+                <textarea class="form-control" name="descripcion" rows="3"
+                          placeholder="Escribe una descripción..."></textarea>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary w-100">Enviar</button>
             </div>
         </form>
+        <div id="result" class="alert alert-danger" role="alert" style="display: none">
+            Lo sentimos. Hubo un problema al crear el usuario.
+        </div>
     </div>
 </div>
 </div>

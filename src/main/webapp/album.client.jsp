@@ -21,7 +21,7 @@
     %>
     <div class="container-centered">
         <div class="card" style="width: 40rem;">
-            <img src="<%=verAlbum.getUrl_cover()%>" class="card-img-top" alt="...">
+            <img src="../distrosound_images/<%=verAlbum.getImage()%>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><%=verAlbum.getTitle()%>
                 </h5>

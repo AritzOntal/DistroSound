@@ -59,10 +59,9 @@
                     <div class="col-12">
                         <button type="submit" class="btn btn-success w-100">Registrarse</button>
                     </div>
-                    <div id="result" class="alert alert-danger" role="alert" style="display: none">
-                        No se ha podido crear el usuario!
-                    </div>
                 </form>
+                <div id="result" class="alert alert-danger" role="alert" style="display: none">
+                </div>
             </div>
         </div>
     </div>

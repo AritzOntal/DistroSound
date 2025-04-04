@@ -6,12 +6,11 @@
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-
 <body>
 
 <% HttpSession session1 = request.getSession(false);
-if (session1 != null && session1.getAttribute("id_artist") != null) {
-int idArtist = (int) session1.getAttribute("id_artist");
+    if (session1 != null && session1.getAttribute("id_artist") != null) {
+        int idArtist = (int) session1.getAttribute("id_artist");
 
 %>
 
@@ -49,7 +48,7 @@ int idArtist = (int) session1.getAttribute("id_artist");
                 %>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="<%= album.getUrl_cover() %>" alt="Imagen desde BD">
+                        <img src="../distrosound_images/<%=album.getImage()%>"/>
                         <div class="card-body">
                             <h3 class="card-text"><%=album.getTitle()%>
                             </h3>
@@ -68,6 +67,7 @@ int idArtist = (int) session1.getAttribute("id_artist");
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <%
                     }

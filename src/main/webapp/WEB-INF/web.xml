@@ -2,5 +2,11 @@
 
 <web-app>
     <display-name>Distrosound web application</display-name>
+
+    <context-param>
+        <description>Ruta para almacenar las portadas de albumes</description>
+        <param-name>image-path</param-name>
+        <param-value>/Users/aritzontalvillasanchez/Desktop/apache-tomcat-9.0.100/webapps/distrosound_images</param-value>
+    </context-param>
 </web-app>
 

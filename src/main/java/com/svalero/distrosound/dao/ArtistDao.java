@@ -72,4 +72,11 @@ public class ArtistDao {
             return null;
         }
     }
+
+    public void deleteAlbumById(Integer id) throws SQLException {
+        String sql = "DELETE FROM album WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        int affectedRows = statement.executeUpdate();
+    }
 }

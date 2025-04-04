@@ -34,7 +34,7 @@ public class AlbumDao {
         statement.setString(5, album.getDescription());
         statement.setBoolean(6, album.getExplicit());
         statement.setFloat(7, album.getPrice());
-        statement.setString(8, album.getUrl_cover());
+        statement.setString(8, album.getImage());
         statement.setDate(9, java.sql.Date.valueOf(album.getUploaded()));
         statement.setInt(10, album.getId_artist());
 
@@ -69,7 +69,7 @@ public class AlbumDao {
             album.setDuration(result.getFloat("duration"));
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
-            album.setUrl_cover(result.getString("url_cover"));
+            album.setImage(result.getString("url_cover"));
             album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
             album.setISRC(result.getString("ISRC"));
@@ -105,7 +105,7 @@ public class AlbumDao {
             album.setDuration(result.getFloat("duration"));
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
-            album.setUrl_cover(result.getString("url_cover"));
+            album.setImage(result.getString("url_cover"));
             album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
             album.setISRC(result.getString("ISRC"));
@@ -121,7 +121,7 @@ public class AlbumDao {
     //Devuelve un album por ID artista
     public Album getById(int id) throws SQLException, albumNotFoundException {
 
-        String sql = "SELECT * FROM album WHERE id_artist = ?";
+        String sql = "SELECT * FROM album WHERE id_album = ?";
         PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class AlbumDao {
             album.setDuration(result.getFloat("duration"));
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
-            album.setUrl_cover(result.getString("url_cover"));
+            album.setImage(result.getString("url_cover"));
             album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
             album.setISRC(result.getString("ISRC"));
@@ -166,6 +166,5 @@ public class AlbumDao {
 
         //SI HAY INEAS AFECTADAS, DE VOLVERA TRUE PORQUE ES DISTINDO QUE 0.
         return affectedRows != 0;
-
     }
 }
