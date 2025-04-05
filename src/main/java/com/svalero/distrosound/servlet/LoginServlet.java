@@ -40,15 +40,16 @@ public class LoginServlet extends HttpServlet {
                 role = employeeDao.loginEmployee(username, password);
 
             } catch (EmployeeNotFoundException e) {
-                response.getWriter().write("Invalid username or password");
 
             }
 
             if (role == null) {
                 try {
                     role = artistDao.loginArtist(username, password);
+
                 } catch (ArtistNotFoundException e) {
                     response.getWriter().print("El usuario no existe");
+
                     return;
                 }
             }

@@ -2,7 +2,6 @@ package com.svalero.distrosound.model;
 
 import lombok.Data;
 
-import javax.servlet.http.Part;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -14,7 +13,7 @@ public class Album {
     private String image;
     private Boolean explicit;
     private Date release_date;
-    private LocalDate uploaded;
+    private String uploaded;
     private float duration, price;
 
 

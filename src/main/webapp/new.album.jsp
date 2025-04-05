@@ -36,7 +36,7 @@
                 <label class="form-label">Explícito</label>
                 <select name="explicito" class="form-control">
                     <option value="no">No</option>
-                    <option value="yes">Sí</option>
+                    <option value="yes">Si</option>
                 </select>
             </div>
             <div class="mb-2">

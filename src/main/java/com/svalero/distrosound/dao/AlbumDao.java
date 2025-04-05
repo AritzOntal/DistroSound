@@ -35,7 +35,7 @@ public class AlbumDao {
         statement.setBoolean(6, album.getExplicit());
         statement.setFloat(7, album.getPrice());
         statement.setString(8, album.getImage());
-        statement.setDate(9, java.sql.Date.valueOf(album.getUploaded()));
+        statement.setString(9, album.getUploaded());
         statement.setInt(10, album.getId_artist());
 
         //UPDATE, INSERT, DELETE SE EJEVUTAN CON ESTE
@@ -144,6 +144,7 @@ public class AlbumDao {
             album.setRelease_date(result.getDate("release_date"));
             album.setDescription(result.getString("description"));
             album.setDuration(result.getFloat("price"));
+            album.setUploaded(result.getString("uploaded"));
 
             statement.close();
 

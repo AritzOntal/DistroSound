@@ -19,6 +19,8 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.UUID;
 
 @WebServlet("/newAlbum")
@@ -33,9 +35,9 @@ public class AddAlbumServlet extends HttpServlet {
         String description = request.getParameter("descripcion");
         String ISRC = request.getParameter("ISRC");
         int idArtist = Integer.parseInt(request.getParameter("id_artist"));
-        boolean explicit = Boolean.parseBoolean(request.getParameter("explicito"));
-        float price = Float.parseFloat(request.getParameter("precio"));
+        String explicitString = request.getParameter("explicito");
 
+        float price = Float.parseFloat(request.getParameter("precio"));
 
         try {
             Database database = new Database();
@@ -52,6 +54,14 @@ public class AddAlbumServlet extends HttpServlet {
                 Files.copy(inputStream, Path.of(imagePath + File.separator + filename));
             }
 
+            boolean explicit = false;
+
+            if ("yes".equalsIgnoreCase(explicitString)) {
+                explicit = true;
+            } else if ("no".equalsIgnoreCase(explicitString)) {
+                explicit = false;
+            }
+
             album.setTitle(title);
             album.setArtist(artist);
             album.setGenre(genre);
@@ -60,8 +70,9 @@ public class AddAlbumServlet extends HttpServlet {
             album.setExplicit(explicit);
             album.setPrice(price);
             album.setImage(filename);
-            album.setUploaded(LocalDate.now());
             album.setId_artist(idArtist);
+            String uploadDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+            album.setUploaded(uploadDate);
 
             albumDao.add(album);
 

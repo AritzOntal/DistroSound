@@ -19,7 +19,7 @@
             Album verAlbum = albumDao.getById(albumId);
     %>
     <div class="container-p4">
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 30rem;">
             <img src="../distrosound_images/<%=verAlbum.getImage()%>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><%=verAlbum.getTitle()%>

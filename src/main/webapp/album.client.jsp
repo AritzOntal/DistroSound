@@ -20,7 +20,7 @@
             Album verAlbum = albumDao.getById(albumId);
     %>
     <div class="container-centered">
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 30rem;">
             <img src="../distrosound_images/<%=verAlbum.getImage()%>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><%=verAlbum.getTitle()%>
@@ -33,7 +33,7 @@
                 </li>
                 <li class="list-group-item">Género: <%=verAlbum.getGenre()%>
                 </li>
-                <li class="list-group-item">Explícito: <%=verAlbum.getExplicit()%>
+                <li class="list-group-item">Explícito: <%=verAlbum.getExplicit() ? "si" : "no"%>
                 </li>
                 <li class="list-group-item">ISRC: <%=verAlbum.getISRC()%>
                 </li>
