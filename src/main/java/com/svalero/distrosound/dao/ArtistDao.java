@@ -1,9 +1,6 @@
 package com.svalero.distrosound.dao;
 
 import com.svalero.distrosound.exception.ArtistNotFoundException;
-import com.svalero.distrosound.exception.UserNotFoundException;
-import com.svalero.distrosound.exception.albumNotFoundException;
-import com.svalero.distrosound.model.Album;
 import com.svalero.distrosound.model.Artist;
 
 import java.sql.*;
@@ -73,10 +70,14 @@ public class ArtistDao {
         }
     }
 
-    public void deleteAlbumById(Integer id) throws SQLException {
-        String sql = "DELETE FROM album WHERE id = ?";
+    public boolean deleteArtistById(int id) throws SQLException {
+
+        String sql = "DELETE FROM artist WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         int affectedRows = statement.executeUpdate();
-    }
+
+        return affectedRows != 0;
+
+        }
 }

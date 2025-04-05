@@ -18,6 +18,7 @@
             database.connect();
             AlbumDao albumDao = new AlbumDao(database.getConnection());
             Album verAlbum = albumDao.getById(albumId);
+            int idAlbum = verAlbum.getId_album();
     %>
     <div class="container-centered">
         <div class="card" style="width: 30rem;">
@@ -40,7 +41,7 @@
 
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link">Elminiar</a>
+                <a href="deleteAlbum?id_album=<%=idAlbum%>" class="card-link">Elminiar</a>
                 <a href="#" class="card-link">Modificar</a>
             </div>
         </div>

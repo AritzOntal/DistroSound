@@ -26,16 +26,17 @@
                     <a href="new.album.jsp?id_artist=<%=idArtist%>" class="btn btn-success btn-sm mt-3">SUBIR</a>
                 </div>
             </div>
+
+<%--
+            CRUD ARTISTA
+--%>
             <div class="col">
                 <div class="bg-white p-4 rounded shadow-lg h-100">
                     <h3 class="fs-4 text-body-emphasis">Mi perfil</h3>
                     <p>Actualiza, modifica o elimina tus perfil.</p>
                     <a href="modify.client.jsp?id_artist=<%=idArtist%>"
                        class="btn btn-primary btn-sm">Modificar</a>
-                    </form>
-                    <input type="hidden" name="idArtist" value="<%=idArtist%>">
-                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                    </form>
+                    <a href="deleteArtist?id_artist=<%= idArtist %>" class="btn btn-danger btn-sm">Eliminar</a>
                 </div>
             </div>
         </div>

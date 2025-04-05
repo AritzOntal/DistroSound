@@ -156,15 +156,13 @@ public class AlbumDao {
     }
 
 
-    public boolean delete(String name) throws SQLException {
-        //CON PASARLE EL NOMBRE COMO PARAMETRO NOS VALE (NO EL OBJETO ENTERO)
-        String sql = "DELETE FROM games WHERE title = ?";
+    public boolean deleteAlbumById(int id) throws SQLException {
 
+        String sql = "DELETE FROM album WHERE id_album = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, name);
+        statement.setInt(1, id);
 
         int affectedRows = statement.executeUpdate();
-
         //SI HAY INEAS AFECTADAS, DE VOLVERA TRUE PORQUE ES DISTINDO QUE 0.
         return affectedRows != 0;
     }
