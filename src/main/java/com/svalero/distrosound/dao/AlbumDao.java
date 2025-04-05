@@ -143,7 +143,7 @@ public class AlbumDao {
             album.setISRC(result.getString("ISRC"));
             album.setRelease_date(result.getDate("release_date"));
             album.setDescription(result.getString("description"));
-            album.setDuration(result.getFloat("price"));
+            album.setPrice(result.getFloat("price"));
             album.setUploaded(result.getString("uploaded"));
 
             statement.close();

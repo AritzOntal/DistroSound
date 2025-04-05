@@ -38,7 +38,7 @@
                 </li>
                 <li class="list-group-item">ISRC: <%=verAlbum.getISRC()%>
                 </li>
-
+                <li class="list-group-item">Precio: <%= String.format("%.2f €", verAlbum.getPrice()) %></li>
             </ul>
             <div class="card-body">
                 <a href="deleteAlbum?id_album=<%=idAlbum%>" class="card-link">Elminiar</a>
