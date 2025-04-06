@@ -166,4 +166,21 @@ public class AlbumDao {
         //SI HAY INEAS AFECTADAS, DE VOLVERA TRUE PORQUE ES DISTINDO QUE 0.
         return affectedRows != 0;
     }
+
+    public boolean modifyAlbum(Album album) throws SQLException {
+        String sql = "UPDATE album SET title = ?, artist = ?, genre = ?, ISRC = ?, " +
+                "description = ?, explicit = ?, price = ? WHERE id_album = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, album.getTitle());
+        statement.setString(2, album.getArtist());
+        statement.setString(3, album.getGenre());
+        statement.setString(4, album.getISRC());
+        statement.setString(5, album.getDescription());
+        statement.setBoolean(6, album.getExplicit());
+        statement.setFloat(7, album.getPrice());
+        statement.setInt(8, album.getId_album());
+        int affectedRows = statement.executeUpdate();
+
+        return affectedRows != 0;
+    }
 }
