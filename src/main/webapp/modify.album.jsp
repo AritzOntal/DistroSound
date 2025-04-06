@@ -1,16 +1,16 @@
 <jsp:include page="includes/header.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% request.setAttribute("mappServlet", "newAlbum"); %>
+<% request.setAttribute("mappServlet", "modifyAlbum"); %>
 
 <body>
 <jsp:include page="includes/ajax.data.jsp"/>
 <jsp:include page="includes/navbar.jsp"/>
 
-<% int idArtist = Integer.parseInt(request.getParameter("id_artist")); %>
+<% int idAlbum = Integer.parseInt(request.getParameter("id_album")); %>
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="col-md-6 bg-light p-4 rounded shadow">
-        <h4 class="text-center mb-3">Subir album</h4>
+        <h4 class="text-center mb-3">Editar album</h4>
         <form>
             <div class="mb-2">
                 <label class="form-label">Título</label>
@@ -45,7 +45,7 @@
             </div>
             <div class="mb-2">
                 <label class="form-label">Id Artista</label>
-                <input type="number" name="id_artist" value=<%=idArtist%> class="form-control">
+                <input type="number" name="id_artist" value=<%=idAlbum%> class="form-control">
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripción</label>
@@ -57,9 +57,8 @@
             </div>
         </form>
         <div id="result" class="alert alert-danger" role="alert" style="display: none">
-            Lo sentimos. Hubo un problema al crear el usuario.
+            Lo sentimos. Hubo un problema al modificar el album.
         </div>
     </div>
 </div>
 </body>
-

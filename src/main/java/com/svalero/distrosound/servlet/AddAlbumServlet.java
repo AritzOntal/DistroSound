@@ -28,6 +28,8 @@ import java.util.UUID;
 
 public class AddAlbumServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         String title = request.getParameter("titulo");
         String artist = request.getParameter("artista");
         String genre = request.getParameter("genero");
@@ -77,6 +79,8 @@ public class AddAlbumServlet extends HttpServlet {
             albumDao.add(album);
 
             response.getWriter().print("ok");
+
+            response.sendRedirect("client.zone.jsp");
 
 
         }catch (SQLException sqle) {

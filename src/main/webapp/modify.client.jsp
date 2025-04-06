@@ -34,7 +34,7 @@
             </div>
 
             <div id="result" class="alert alert-danger" role="alert" style="display: none">
-                Lo sentimos. Hubo un problema al crear el usuario.
+                Lo sentimos. Hubo un problema al modificar el usuario.
             </div>
         </form>
     </div>

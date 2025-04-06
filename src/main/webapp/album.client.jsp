@@ -42,7 +42,7 @@
             </ul>
             <div class="card-body">
                 <a href="deleteAlbum?id_album=<%=idAlbum%>" class="card-link">Elminiar</a>
-                <a href="#" class="card-link">Modificar</a>
+                <a href="modify.album.jsp?id_album=<%=idAlbum%>" class="card-link">Modificar</a>
             </div>
         </div>
     </div>

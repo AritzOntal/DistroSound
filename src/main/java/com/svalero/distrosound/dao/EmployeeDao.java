@@ -3,6 +3,8 @@ package com.svalero.distrosound.dao;
 import com.svalero.distrosound.exception.ArtistNotFoundException;
 import com.svalero.distrosound.exception.EmployeeNotFoundException;
 import com.svalero.distrosound.exception.UserNotFoundException;
+import com.svalero.distrosound.exception.albumNotFoundException;
+import com.svalero.distrosound.model.Album;
 import com.svalero.distrosound.model.Artist;
 import com.svalero.distrosound.model.Employee;
 
@@ -73,13 +75,66 @@ public class EmployeeDao {
         }
     }
 
-    public ArrayList getAll(){
+    public Employee getEmployeeById(int id) throws SQLException, EmployeeNotFoundException {
+        String sql = "SELECT * FROM employee WHERE id_employee = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        ResultSet result = statement.executeQuery();
 
-        return null;
+        if (!result.next()) {
+            throw new EmployeeNotFoundException();
+        }
+
+        Employee employee = new Employee();
+
+        employee.setId_employee(id);
+        employee.setName(result.getString("name"));
+        employee.setLast_name(result.getString("last_name"));
+        employee.setUsername(result.getString("username"));
+        employee.setPassword(result.getString("password"));
+        employee.setEmail(result.getString("email"));
+
+
+        statement.close();
+
+        return (employee);
     }
+
+    public ArrayList getAll() throws SQLException {
+
+        String sql = "SELECT * FROM employee";
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        statement = connection.prepareStatement(sql);
+        result = statement.executeQuery();
+
+        //CREAMOS ARRAYLIST (COMO OBJETO) PARA GUARDAR TODOS LOS OBJETOS CREADOS EN EL BUCLE
+        ArrayList<Employee> employeeList = new ArrayList<>();
+
+        while (result.next()) {
+            //creo objeto Album para añadirle los datos de la BD
+            Employee employee = new Employee();
+            employee.setId_employee(result.getInt("id_employee"));
+            employee.setName(result.getString("name"));
+            employee.setLast_name(result.getString("last_name"));
+            employee.setUsername(result.getString("username"));
+            employee.setPassword(result.getString("password"));
+            employee.setEmail(result.getString("email"));
+
+            //Lo AÑADIMOS al arraylist
+            employeeList.add(employee);
+        }
+        result.close();
+        statement.close();
+
+        return employeeList;
+    }
+
 
     //devuelve un único empleado
     public Employee get (int id){
+        String sql = "SELECT * FROM employee WHERE id_employee = ?";
+        PreparedStatement statement = null;
 
         return null;
     }
@@ -89,7 +144,14 @@ public class EmployeeDao {
 
     }
 
-    public void delete(Employee employee){
+    public boolean deleteEmployeeById(int id) throws SQLException {
+
+        String sql = "DELETE FROM employee WHERE id_employee = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        int affectedRows = statement.executeUpdate();
+
+        return affectedRows != 0;
 
     }
 

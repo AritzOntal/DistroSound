@@ -78,7 +78,7 @@ public class AlbumDao {
             //Lo AÑADIMOS al arraylist
             albumList.add(album);
         }
-
+        result.close();
         statement.close();
 
         return albumList;

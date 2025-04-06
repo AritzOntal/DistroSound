@@ -5,33 +5,29 @@
 
 <% HttpSession session1 = request.getSession(false);
     if (session1 != null && session1.getAttribute("id_employee") != null) {
-
+        int idEmployee = (int) session1.getAttribute("id_employee");
 %>
 
 <jsp:include page="includes/navbar.jsp"/>
 
-<div class="bg-custom-employee">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<div class="bg-custom-client-zone">
+    <div class="container px-4 py-5" id="featured-3">
+        <div class="row g-4 row-cols-1 row-cols-lg-2">
             <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Album"
-                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"/>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                    </svg>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
-                                <button type="button" class="btn btn-sm btn-outline-warning">Modificar</button>
-                                <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button>
-                                <button type="button" class="btn btn-sm btn-outline-success">Lanzar</button>
-                            </div>
-                            <small class="text-body-secondary">9 mins</small>
-                        </div>
-                    </div>
+                <div class="bg-white p-4 rounded shadow-lg h-100">
+                    <h3 class="fs-4 text-body-emphasis">GESTIÓN</h3>
+                    <p>Visualiza aqui la lista de artistas y distribuidores.</p>
+                    <a href="client.list.jsp" class="btn btn-success btn-sm mt-3">VER ARTISTAS</a>
+                    <a href="employee.list.jsp" class="btn btn-success btn-sm mt-3">VER DISTRIBUIDORES</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="bg-white p-4 rounded shadow-lg h-100">
+                    <h3 class="fs-4 text-body-emphasis">Mi perfil</h3>
+                    <p>Actualiza, modifica o elimina tu perfil.</p>
+                    <a href="modify.employee.jsp?id_employee=<%=idEmployee%>"
+                       class="btn btn-primary btn-sm">Modificar</a>
+                    <a href="deleteEmployee?id_employee=<%=idEmployee%>" class="btn btn-danger btn-sm">Eliminar</a>
                 </div>
             </div>
         </div>

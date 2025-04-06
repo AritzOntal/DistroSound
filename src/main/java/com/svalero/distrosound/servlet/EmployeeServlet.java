@@ -23,6 +23,8 @@ import java.time.LocalDate;
 
 public class EmployeeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("nombre");

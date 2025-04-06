@@ -13,4 +13,8 @@ public class Artist {
     private boolean premium;
     private float royalties;
     private LocalDate birth_date;
+
+    public Artist() {
+
+    }
 }
