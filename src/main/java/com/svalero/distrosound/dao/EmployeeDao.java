@@ -155,6 +155,23 @@ public class EmployeeDao {
 
     }
 
+    public boolean modifyEmployee(Employee employee) throws SQLException {
+        String sql = "UPDATE employee SET name = ?, last_name = ?, email = ?, " +
+                "username = ?, speciality = ?, distributor = ? WHERE id_employee = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, employee.getName());
+        statement.setString(2, employee.getLast_name());
+        statement.setString(3, employee.getEmail());
+        statement.setString(4, employee.getUsername());
+        statement.setString(5, employee.getSpeciality());
+        statement.setBoolean(6, employee.isDistributor());
+        statement.setInt(7, employee.getId_employee());
+
+        int affectedRows = statement.executeUpdate();
+
+        return affectedRows != 0;
+    }
+
 }
 
 
