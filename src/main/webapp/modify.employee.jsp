@@ -38,7 +38,7 @@
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="col-md-6 bg-light p-4 rounded shadow">
-    <h4 class="text-center mb-3">Editar álbum</h4>
+    <h4 class="text-center mb-3">Editar Distribuidor</h4>
     <form method="POST" action="yourServletHere">
       <div class="mb-2">
         <label class="form-label">Nombre</label>

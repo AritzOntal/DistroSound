@@ -22,8 +22,8 @@
             if (role.equals("anonymous")) {
         %>
 
-        <div class="card p-4 shadow-lg" style="width: 500px;">
-            <div class="card-body">
+        <div class="card p-4 shadow-lg" style="width: 450px;">
+            <div class="card-body card p-3 shadow-sm w-100">
                 <h1 class="h3 mb-3 fw-normal text-center">Distro Sound</h1>
                 <p class="text-center">Millones de artistas lanzan aquí su música. ¿A qué esperas? Regístrate ahora.</p>
 
@@ -47,6 +47,17 @@
                     <div class="col-12">
                         <label for="inputEmail" class="form-label">Email</label>
                         <input type="text" name="email" class="form-control" id="inputEmail">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputBirthDAte" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" name="cumpleaños" class="form-control" id="inputBirthDAte">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">¿Premium?</label>
+                        <select name="premium" class="form-control">
+                            <option value="no">No</option>
+                            <option value="yes">Si</option>
+                        </select>
                     </div>
                     <div class="col-12">
                         <div class="form-check">

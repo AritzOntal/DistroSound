@@ -33,6 +33,7 @@ public class ArtistServlet extends HttpServlet {
         String name = request.getParameter("nombre");
         String last_name = request.getParameter("apellidos");
         String email = request.getParameter("email");
+        LocalDate dateBirth = LocalDate.parse(request.getParameter("cumpleaños"));
 
         if (username == null || username.trim().isEmpty() ||
                 password == null || password.trim().isEmpty() ||
@@ -66,6 +67,7 @@ public class ArtistServlet extends HttpServlet {
             artist.setName(name);
             artist.setLast_name(last_name);
             artist.setEmail(email);
+            artist.setBirth_date(dateBirth);
 
             artistDao.add(artist);
 

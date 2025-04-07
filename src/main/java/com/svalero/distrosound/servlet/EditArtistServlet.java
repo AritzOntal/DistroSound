@@ -1,8 +1,10 @@
 package com.svalero.distrosound.servlet;
 
 import com.svalero.distrosound.dao.AlbumDao;
+import com.svalero.distrosound.dao.ArtistDao;
 import com.svalero.distrosound.database.Database;
 import com.svalero.distrosound.model.Album;
+import com.svalero.distrosound.model.Artist;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,57 +13,62 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 @WebServlet("/modifyArtist")
 @MultipartConfig
-
 public class EditArtistServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        String newTitle = request.getParameter("titulo");
-        String newArtist = request.getParameter("artista");
-        String newGenre = request.getParameter("genero");
-        String newDescription = request.getParameter("descripcion");
-        String newISRC = request.getParameter("ISRC");
-        String newExplicitString = request.getParameter("explicito");
-        float newPrice = Float.parseFloat(request.getParameter("precio"));
-        int newAlbumId = Integer.parseInt(request.getParameter("id_album"));
+        String newName = request.getParameter("nombre");
+        String newLastName = request.getParameter("apellidos");
+        String newUsername = request.getParameter("username");
+        String newEmail = request.getParameter("email");
+        String newStringPremium = request.getParameter("premium");
+        String idArtist = request.getParameter("id_artist");
+        String newPassword = request.getParameter("password");
+        int idArtistInt = Integer.parseInt(idArtist);
+        LocalDate dateBirth = LocalDate.parse(request.getParameter("cumpleaños"));
 
         try {
             Database database = new Database();
             database.connect();
-            AlbumDao albumDao = new AlbumDao(database.getConnection());
+            ArtistDao artistDao = new ArtistDao(database.getConnection());
 
-            Album album = new Album();
+            Artist artist = new Artist();
 
-            boolean explicit = false;
+            boolean premium = false;
 
-            if ("yes".equalsIgnoreCase(newExplicitString)) {
-                explicit = true;
-            } else if ("no".equalsIgnoreCase(newExplicitString)) {
-                explicit = false;
+            if ("yes".equalsIgnoreCase(newStringPremium)) {
+                premium = true;
+            } else if ("no".equalsIgnoreCase(newStringPremium)) {
+                premium = false;
             }
 
-            album.setTitle(newTitle);
-            album.setArtist(newArtist);
-            album.setGenre(newGenre);
-            album.setDescription(newDescription);
-            album.setISRC(newISRC);
-            album.setId_album(newAlbumId);
-            album.setPrice(newPrice);
-            album.setExplicit(explicit);
+            artist.setName(newName);
+            artist.setLast_name(newLastName);
+            artist.setUsername(newUsername);
+            artist.setEmail(newEmail);
+            artist.setPremium(premium);
+            artist.setId(idArtistInt);
+            artist.setBirth_date(dateBirth);
+            artist.setRoyalties(0.80f);
+            artist.setPassword(newPassword);
 
-            albumDao.modifyAlbum(album);
+            artistDao.modifyArtist(artist);
 
             response.getWriter().print("ok");
 
             database.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-
+            response.getWriter().print("error");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
