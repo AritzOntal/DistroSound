@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
 
 public class ArtistServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         String username = request.getParameter("username");
@@ -32,6 +33,7 @@ public class ArtistServlet extends HttpServlet {
         String name = request.getParameter("nombre");
         String last_name = request.getParameter("apellidos");
         String email = request.getParameter("email");
+        LocalDate dateBirth = LocalDate.parse(request.getParameter("cumpleaños"));
 
         if (username == null || username.trim().isEmpty() ||
                 password == null || password.trim().isEmpty() ||
@@ -65,6 +67,7 @@ public class ArtistServlet extends HttpServlet {
             artist.setName(name);
             artist.setLast_name(last_name);
             artist.setEmail(email);
+            artist.setBirth_date(dateBirth);
 
             artistDao.add(artist);
 

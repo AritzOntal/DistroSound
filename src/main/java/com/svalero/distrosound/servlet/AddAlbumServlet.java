@@ -28,6 +28,7 @@ import java.util.UUID;
 
 public class AddAlbumServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         String title = request.getParameter("titulo");

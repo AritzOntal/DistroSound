@@ -36,7 +36,7 @@
             <li class="list-group-item"><strong>Apellidos</strong>: <%=artist.getLast_name()%></li>
             <li class="list-group-item"><strong>Username</strong>: <%=artist.getUsername()%></li>
             <li class="list-group-item"><strong>Email</strong>: <%=artist.getEmail()%></li>
-            <li class="list-group-item"><strong>Fecha de nacimiento:</strong>: <%=artist.getBirth_date()%></li>
+            <li class="list-group-item"><strong>Fecha de nacimiento:</strong>: <%=artist.getBirth_date().toString()%></li>
             <li class="list-group-item"><strong>Royalties:</strong>: <%=artist.getRoyalties()%></li>
         </ul>
         <%

@@ -17,13 +17,14 @@ public class ArtistDao {
     }
 
     public boolean add(Artist artist) throws SQLException {
-        String sql = "INSERT INTO artist (name, last_name, username, password, email) VALUES (?,?,?,SHA1(?),?)";
+        String sql = "INSERT INTO artist (name, last_name, username, password, email, birth_date) VALUES (?,?,?,SHA1(?),?,?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, artist.getName());
         statement.setString(2, artist.getLast_name());
         statement.setString(3, artist.getUsername());
         statement.setString(4, artist.getPassword());
         statement.setString(5, artist.getEmail());
+        statement.setDate(6, java.sql.Date.valueOf(artist.getBirth_date()));
 
         int affectedRows = statement.executeUpdate();
         if (affectedRows > 0) {
@@ -76,7 +77,7 @@ public class ArtistDao {
     public Artist getArtistById(int id) throws SQLException, ArtistNotFoundException {
 
         String sql = "SELECT * FROM artist WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -93,6 +94,12 @@ public class ArtistDao {
         artist.setPassword(result.getString("password"));
         artist.setEmail(result.getString("email"));
 
+        Date birthDate = result.getDate("birth_date");
+        if (birthDate != null) {
+            artist.setBirth_date(birthDate.toLocalDate());
+        } else {
+            artist.setBirth_date(null);
+        }
         return artist;
     }
 
@@ -135,5 +142,24 @@ public class ArtistDao {
 
         return affectedRows != 0;
 
+    }
+
+    public boolean modifyArtist(Artist artist) throws SQLException {
+        String sql = "UPDATE artist SET name = ?, last_name = ?, username = ?, email = ?, " +
+                "premium = ?, royalties = ?, birth_date = ?, password = SHA1(?) WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, artist.getName());
+        statement.setString(2, artist.getLast_name());
+        statement.setString(3, artist.getUsername());
+        statement.setString(4, artist.getEmail());
+        statement.setBoolean(5, artist.isPremium());
+        statement.setFloat(6, artist.getRoyalties());
+        statement.setDate(7, java.sql.Date.valueOf(artist.getBirth_date()));
+        statement.setString(8, artist.getPassword());
+        statement.setInt(9, artist.getId());
+
+        int affectedRows = statement.executeUpdate();
+
+        return affectedRows != 0;
     }
 }
