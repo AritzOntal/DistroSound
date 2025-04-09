@@ -27,9 +27,9 @@ public class EditEmployeeServlet extends HttpServlet {
         String newEmail = request.getParameter("email");
         String newLast_name = request.getParameter("apellidos");
         String newSpeciality = request.getParameter("especialidad");
-        String newDistributorString = request.getParameter("distribuidor");
         String newUsername = request.getParameter("username");
         int idEmployee = Integer.parseInt(request.getParameter("id_employee"));
+        String newStringActive =request.getParameter("active");
 
 
         try {
@@ -39,20 +39,19 @@ public class EditEmployeeServlet extends HttpServlet {
 
             Employee employee = new Employee();
 
-            boolean distributor = false;
+            boolean active = false;
 
-            if ("yes".equalsIgnoreCase(newDistributorString)) {
-                distributor = true;
-            } else if ("no".equalsIgnoreCase(newDistributorString)) {
-                distributor = false;
-            }
+              if ("yes".equalsIgnoreCase(newStringActive)) {
+                active = true;
+            } else if ("No".equalsIgnoreCase(newStringActive)) {}
+                active = false;
 
             employee.setId_employee(idEmployee);
             employee.setName(newName);
             employee.setEmail(newEmail);
             employee.setLast_name(newLast_name);
             employee.setSpeciality(newSpeciality);
-            employee.setDistributor(distributor);
+            employee.setActive(active);
             employee.setUsername(newUsername);
 
             employeeDao.modifyEmployee(employee);

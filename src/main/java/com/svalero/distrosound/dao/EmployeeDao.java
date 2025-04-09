@@ -21,13 +21,17 @@ public class EmployeeDao {
     }
 
     public boolean add(Employee employee) throws SQLException {
-        String sql = "INSERT INTO employee (name, last_name, username, password, email) VALUES (?,?,?,SHA1(?),?)";
+        String sql = "INSERT INTO employee (name, last_name, username, password, email, speciality, comision, hiring_date) VALUES (?,?,?,SHA1(?),?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, employee.getName());
         statement.setString(2, employee.getLast_name());
         statement.setString(3, employee.getUsername());
         statement.setString(4, employee.getPassword());
         statement.setString(5, employee.getEmail());
+        statement.setString(6, employee.getSpeciality());
+        statement.setFloat(7, employee.getComision());
+        statement.setDate(8, java.sql.Date.valueOf(employee.getHiring_date()));
+
 
         int affectedRows = statement.executeUpdate();
         if (affectedRows > 0) {
@@ -93,6 +97,10 @@ public class EmployeeDao {
         employee.setUsername(result.getString("username"));
         employee.setPassword(result.getString("password"));
         employee.setEmail(result.getString("email"));
+        employee.setActive(result.getBoolean("active"));
+        employee.setSpeciality(result.getString("speciality"));
+        employee.setComision(result.getFloat("comision"));
+        employee.setHiring_date(result.getDate("hiring_date").toLocalDate());
 
 
         statement.close();
@@ -163,14 +171,14 @@ public class EmployeeDao {
 
     public boolean modifyEmployee(Employee employee) throws SQLException {
         String sql = "UPDATE employee SET name = ?, last_name = ?, email = ?, " +
-                "username = ?, speciality = ?, distributor = ? WHERE id_employee = ?";
+                "username = ?, speciality = ?, active = ? WHERE id_employee = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, employee.getName());
         statement.setString(2, employee.getLast_name());
         statement.setString(3, employee.getEmail());
         statement.setString(4, employee.getUsername());
         statement.setString(5, employee.getSpeciality());
-        statement.setBoolean(6, employee.isDistributor());
+        statement.setBoolean(6, employee.isActive());
         statement.setInt(7, employee.getId_employee());
 
         int affectedRows = statement.executeUpdate();

@@ -28,12 +28,11 @@
     String name = employee.getName();
     String lastName = employee.getLast_name();
     String email = employee.getEmail();
-    boolean distributor = employee.isDistributor();
+    boolean active = employee.isActive();
     Float comision = employee.getComision();
     String username = employee.getUsername();
     String speciality = employee.getSpeciality();
     int id = employee.getId_employee();
-
 %>
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
@@ -65,12 +64,14 @@
         <textarea name="especialidad" class="form-control"
                   placeholder="Ingrese la descripción"><%= speciality != null ? speciality : "" %></textarea>
       </div>
-      <div class="mb-2">
-        <label class="form-label">¿Es distribuidor?</label>
-        <input type="checkbox" name="explicit" class="form-check-input"
-          <%= distributor ? "checked" : "" %>>
-      </div>
       <input type="hidden" name="id_employee" value="<%= employee.getId_employee() %>">
+      <div class="mb-2">
+        <label class="form-label">¿Activo?</label>
+        <select name="activo" class="form-control">
+          <option value="no" <%= !active ? "selected" : "" %>>No</option>
+          <option value="yes" <%= active ? "selected" : "" %>>Si</option>
+        </select>
+      </div>
       <div class="mb-2 text-center">
         <button type="submit" class="btn btn-primary">Actualizar</button>
       </div>

@@ -38,6 +38,8 @@
             <li class="list-group-item"><strong>Comisión</strong>: <%=employee.getComision()%></li>
             <li class="list-group-item"><strong>Especialidad</strong>: <%=employee.getSpeciality()%></li>
             <li class="list-group-item"><strong>Fecha socio</strong>: <%=employee.getHiring_date()%></li>
+            <li class="list-group-item"><strong>Activo</strong>: <%=employee.isActive() ? "Si": "No"%></li>
+
         </ul>
         <%
 

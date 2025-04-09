@@ -50,6 +50,9 @@ public class EmployeeServlet extends HttpServlet {
             employee.setName(name);
             employee.setLast_name(last_name);
             employee.setEmail(email);
+            employee.setHiring_date(LocalDate.now());
+            employee.setComision(15.5f);
+            employee.setSpeciality("Distribuidor");
 
             employeeDao.add(employee);
 
