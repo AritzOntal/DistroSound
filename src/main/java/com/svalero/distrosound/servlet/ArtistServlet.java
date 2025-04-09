@@ -34,6 +34,7 @@ public class ArtistServlet extends HttpServlet {
         String last_name = request.getParameter("apellidos");
         String email = request.getParameter("email");
         LocalDate dateBirth = LocalDate.parse(request.getParameter("cumpleaños"));
+        String StringPremium = request.getParameter("premium");
 
         if (username == null || username.trim().isEmpty() ||
                 password == null || password.trim().isEmpty() ||
@@ -62,12 +63,22 @@ public class ArtistServlet extends HttpServlet {
 
             Artist artist = new Artist();
 
+            boolean premium = false;
+
+            if ("yes".equalsIgnoreCase(StringPremium)) {
+                premium = true;
+            } else if ("no".equalsIgnoreCase(StringPremium)) {
+                premium = false;
+            }
+
             artist.setUsername(username);
             artist.setPassword(password);
             artist.setName(name);
             artist.setLast_name(last_name);
             artist.setEmail(email);
             artist.setBirth_date(dateBirth);
+            artist.setRoyalties(85.50f);
+            artist.setPremium(premium);
 
             artistDao.add(artist);
 

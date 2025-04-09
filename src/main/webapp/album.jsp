@@ -30,9 +30,10 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Género: <%=verAlbum.getGenre()%>
                 </li>
-                <li class="list-group-item">Explícito: <%=verAlbum.getExplicit()%>
+                <li class="list-group-item">Explícito: <%=verAlbum.getExplicit() ? "si" : "no"%>
                 </li>
-                <li class="list-group-item">Precio: <%= String.format("%.2f €", verAlbum.getPrice()) %></li>            </ul>
+                <li class="list-group-item">Precio: <%= String.format("%.2f €", verAlbum.getPrice()) %></li>
+            </ul>
             <div class="card-body">
                 <a href="#" class="card-link">COMPRAR</a>
             </div>

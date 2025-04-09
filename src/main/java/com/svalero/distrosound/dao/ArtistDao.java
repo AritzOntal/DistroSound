@@ -17,7 +17,7 @@ public class ArtistDao {
     }
 
     public boolean add(Artist artist) throws SQLException {
-        String sql = "INSERT INTO artist (name, last_name, username, password, email, birth_date) VALUES (?,?,?,SHA1(?),?,?)";
+        String sql = "INSERT INTO artist (name, last_name, username, password, email, birth_date, premium, royalties) VALUES (?,?,?,SHA1(?),?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, artist.getName());
         statement.setString(2, artist.getLast_name());
@@ -25,6 +25,9 @@ public class ArtistDao {
         statement.setString(4, artist.getPassword());
         statement.setString(5, artist.getEmail());
         statement.setDate(6, java.sql.Date.valueOf(artist.getBirth_date()));
+        statement.setBoolean(7, artist.isPremium());
+        statement.setFloat(8, artist.getRoyalties());
+
 
         int affectedRows = statement.executeUpdate();
         if (affectedRows > 0) {
@@ -93,8 +96,9 @@ public class ArtistDao {
         artist.setUsername(result.getString("username"));
         artist.setPassword(result.getString("password"));
         artist.setEmail(result.getString("email"));
-
+        artist.setPremium(result.getBoolean("premium"));
         Date birthDate = result.getDate("birth_date");
+        artist.setRoyalties(result.getFloat("royalties"));
         if (birthDate != null) {
             artist.setBirth_date(birthDate.toLocalDate());
         } else {

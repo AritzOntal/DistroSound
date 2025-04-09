@@ -61,7 +61,7 @@
                 <label class="form-label">¿Premium?</label>
                 <select name="premium" class="form-control">
                     <option value="no" <%= !premium ? "selected" : "" %>>No</option>
-                    <option value="yes" <%= premium ? "selected" : "" %>>Sí</option>
+                    <option value="yes" <%= premium ? "selected" : "" %>>Si</option>
                 </select>
             </div>
             <input type="hidden" name="id_artist" value="<%= artist.getId() %>">
