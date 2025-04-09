@@ -28,6 +28,7 @@ public class EditEmployeeServlet extends HttpServlet {
         String newLast_name = request.getParameter("apellidos");
         String newSpeciality = request.getParameter("especialidad");
         String newUsername = request.getParameter("username");
+        String newPassword = request.getParameter("password");
         int idEmployee = Integer.parseInt(request.getParameter("id_employee"));
         String newStringActive =request.getParameter("active");
 
@@ -53,6 +54,7 @@ public class EditEmployeeServlet extends HttpServlet {
             employee.setSpeciality(newSpeciality);
             employee.setActive(active);
             employee.setUsername(newUsername);
+            employee.setPassword(newPassword);
 
             employeeDao.modifyEmployee(employee);
 

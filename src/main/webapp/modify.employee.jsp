@@ -56,8 +56,12 @@
       </div>
       <div class="mb-2">
         <label class="form-label">Username</label>
-        <input type="text" name="precio" class="form-control" placeholder="Ingrese el precio"
+        <input type="text" name="username" class="form-control" placeholder="Ingrese el precio"
                value="<%= username != null ? username : "" %>">
+      </div>
+      <div class="mb-2">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="">
       </div>
       <div class="mb-2">
         <label class="form-label">Especialidad</label>

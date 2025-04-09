@@ -171,7 +171,7 @@ public class EmployeeDao {
 
     public boolean modifyEmployee(Employee employee) throws SQLException {
         String sql = "UPDATE employee SET name = ?, last_name = ?, email = ?, " +
-                "username = ?, speciality = ?, active = ? WHERE id_employee = ?";
+                "username = ?, speciality = ?, active = ?, password = SHA1(?) WHERE id_employee = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, employee.getName());
         statement.setString(2, employee.getLast_name());
@@ -179,7 +179,8 @@ public class EmployeeDao {
         statement.setString(4, employee.getUsername());
         statement.setString(5, employee.getSpeciality());
         statement.setBoolean(6, employee.isActive());
-        statement.setInt(7, employee.getId_employee());
+        statement.setString(7, employee.getPassword());
+        statement.setInt(8, employee.getId_employee());
 
         int affectedRows = statement.executeUpdate();
 
