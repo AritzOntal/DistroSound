@@ -17,19 +17,28 @@
 
 %>
 <div class="container">
+
     <div class="col">
+        <jsp:include page="includes/search.jsp"/>
         <div>
             <h2 class="pb-2 border-bottomx">Lista de distribuidores</h2>
         </div>
 
         <%
             try {
-                Database database = new Database();
-                database.connect();
-                EmployeeDao employeeDao = new EmployeeDao(database.getConnection());
 
-                List<Employee> employeeList = employeeDao.getAll();
+            Database database = new Database();
+            database.connect();
+            EmployeeDao employeeDao = new EmployeeDao(database.getConnection());
+            String query = request.getParameter("search");
 
+            List<Employee> employeeList;
+
+            if (query != null && !query.trim().isEmpty()) {
+                employeeList = employeeDao.getAllEmployee(query);
+            } else {
+                employeeList = employeeDao.getAll();
+            }
 
                 for (Employee employee : employeeList) {
 

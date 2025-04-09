@@ -17,6 +17,7 @@
 %>
 <div class="container">
     <div class="col">
+        <jsp:include page="includes/search.jsp"/>
         <div>
             <h2 class="pb-2 border-bottomx">Lista de artistas</h2>
         </div>
@@ -25,10 +26,16 @@
             try {
                 Database database = new Database();
                 database.connect();
-                ArtistDao artistDao = new ArtistDao(database.getConnection());
+                ArtistDao albumDao = new ArtistDao(database.getConnection());
+                String query = request.getParameter("search");
 
-                List<Artist> artistList = artistDao.getAll();
+                List<Artist> artistList;
 
+                if (query != null && !query.trim().isEmpty()) {
+                    artistList = albumDao.getAllArtist(query);
+                } else {
+                    artistList = albumDao.getAll();
+                }
 
                 for (Artist artist : artistList) {
 

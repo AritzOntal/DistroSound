@@ -104,14 +104,25 @@ public class ArtistDao {
     }
 
     public ArrayList getAll() throws SQLException {
-
         String sql = "SELECT * FROM artist";
-        PreparedStatement statement = null;
-        ResultSet result = null;
-        statement = connection.prepareStatement(sql);
-        result = statement.executeQuery();
+        return launchQuery(sql);
+    }
 
-        //CREAMOS ARRAYLIST (COMO OBJETO) PARA GUARDAR TODOS LOS OBJETOS CREADOS EN EL BUCLE
+    public ArrayList getAllArtist(String search) throws SQLException {
+        String sql = "SELECT * FROM artist WHERE name LIKE ? OR last_name LIKE ?";
+        return launchQuery(sql, search);
+    }
+
+    private ArrayList<Artist> launchQuery(String query, String ...search) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        if(search.length > 0){
+            statement.setString(1, "%" + search[0]  + "%");
+            statement.setString(2, "%" + search[0]  + "%");
+
+        }
+
+        ResultSet result = statement.executeQuery();
         ArrayList<Artist> artistList = new ArrayList<>();
 
         while (result.next()) {

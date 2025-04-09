@@ -100,33 +100,39 @@ public class EmployeeDao {
         return (employee);
     }
 
+    public ArrayList getAllEmployee(String search) throws SQLException {
+        String sql = "SELECT * FROM employee WHERE name LIKE ? OR last_name LIKE ?";
+        return launchQuery(sql, search);
+    }
+
     public ArrayList getAll() throws SQLException {
-
         String sql = "SELECT * FROM employee";
-        PreparedStatement statement = null;
-        ResultSet result = null;
-        statement = connection.prepareStatement(sql);
-        result = statement.executeQuery();
+         return launchQuery(sql);
+    }
 
-        //CREAMOS ARRAYLIST (COMO OBJETO) PARA GUARDAR TODOS LOS OBJETOS CREADOS EN EL BUCLE
+    private ArrayList<Employee> launchQuery(String query, String ...search) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        if(search.length > 0){
+            statement.setString(1, "%" + search[0]  + "%");
+            statement.setString(2, "%" + search[0]  + "%");
+
+        }
+
+        ResultSet result = statement.executeQuery();
         ArrayList<Employee> employeeList = new ArrayList<>();
-
         while (result.next()) {
-            //creo objeto Album para añadirle los datos de la BD
-            Employee employee = new Employee();
-            employee.setId_employee(result.getInt("id_employee"));
-            employee.setName(result.getString("name"));
-            employee.setLast_name(result.getString("last_name"));
-            employee.setUsername(result.getString("username"));
-            employee.setPassword(result.getString("password"));
-            employee.setEmail(result.getString("email"));
-
-            //Lo AÑADIMOS al arraylist
-            employeeList.add(employee);
+        Employee employee = new Employee();
+        employee.setId_employee(result.getInt("id_employee"));
+        employee.setName(result.getString("name"));
+        employee.setLast_name(result.getString("last_name"));
+        employee.setUsername(result.getString("username"));
+        employee.setPassword(result.getString("password"));
+        employee.setEmail(result.getString("email"));
+        employeeList.add(employee);
         }
         result.close();
         statement.close();
-
         return employeeList;
     }
 

@@ -46,23 +46,28 @@ public class AlbumDao {
         return affectedRows != 0;
 
     }
-
     public ArrayList getAll() throws SQLException {
-
         String sql = "SELECT * FROM album";
-        PreparedStatement statement = null;
-        ResultSet result = null;
-        statement = connection.prepareStatement(sql);
+        return launchQuery(sql);
+    }
 
-        result = statement.executeQuery();
+    public ArrayList getAllAlbums(String search) throws SQLException {
+        String sql = "SELECT * FROM album WHERE title LIKE ? OR artist LIKE ?";
+        return launchQuery(sql, search);
+    }
 
-        //CREAMOS ARRAYLIST PARA GUARDAR TODOS LOS OBJETOS CREADOS EN EL BUCLE
+    private ArrayList<Album> launchQuery(String query, String ...search) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        if(search.length > 0){
+            statement.setString(1, "%" + search[0]  + "%");
+            statement.setString(2, "%" + search[0]  + "%");
+
+        }
+        ResultSet result = statement.executeQuery();
         ArrayList<Album> albumList = new ArrayList<>();
         while (result.next()) {
-
-            //creo objeto Album para añadirle los datos de la BD
             Album album = new Album();
-
             album.setId_album(result.getInt("id_album"));
             album.setTitle(result.getString("title"));
             album.setExplicit(result.getBoolean("explicit"));
@@ -72,15 +77,11 @@ public class AlbumDao {
             album.setImage(result.getString("url_cover"));
             album.setId_artist(result.getInt("id_artist"));
             album.setId_employee(result.getInt("id_employee"));
-            album.setISRC(result.getString("ISRC"));
             album.setRelease_date(result.getDate("release_date"));
-
-            //Lo AÑADIMOS al arraylist
             albumList.add(album);
         }
         result.close();
         statement.close();
-
         return albumList;
     }
 
