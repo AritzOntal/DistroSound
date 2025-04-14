@@ -71,7 +71,6 @@ public class AlbumDao {
             album.setId_album(result.getInt("id_album"));
             album.setTitle(result.getString("title"));
             album.setExplicit(result.getBoolean("explicit"));
-            album.setDuration(result.getFloat("duration"));
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
             album.setImage(result.getString("url_cover"));
@@ -102,7 +101,6 @@ public class AlbumDao {
             album.setId_album(result.getInt("id_album"));
             album.setTitle(result.getString("title"));
             album.setExplicit(result.getBoolean("explicit"));
-            album.setDuration(result.getFloat("duration"));
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
             album.setImage(result.getString("url_cover"));
@@ -133,7 +131,6 @@ public class AlbumDao {
             album.setId_album(result.getInt("id_album"));
             album.setTitle(result.getString("title"));
             album.setExplicit(result.getBoolean("explicit"));
-            album.setDuration(result.getFloat("duration"));
             album.setArtist(result.getString("artist"));
             album.setGenre(result.getString("genre"));
             album.setImage(result.getString("url_cover"));
