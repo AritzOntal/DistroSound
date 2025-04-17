@@ -18,7 +18,7 @@ public class RegistrationDao {
     }
 
     public boolean add(Registration registration) throws SQLException {
-        String sql = "INSERT INTO registration (id_employee, id_artist, regist_date, cost, premium, tipe) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO registration (id_employee, id_artist, regist_date, cost, premium, type) VALUES (?,?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setObject(1, registration.getId_employee(), Types.INTEGER);
         statement.setObject(2, registration.getId_artist(), Types.INTEGER);
