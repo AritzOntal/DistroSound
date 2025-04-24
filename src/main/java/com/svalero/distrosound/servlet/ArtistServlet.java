@@ -2,11 +2,8 @@ package com.svalero.distrosound.servlet;
 
 import com.svalero.distrosound.dao.ArtistDao;
 import com.svalero.distrosound.dao.RegistrationDao;
-import com.svalero.distrosound.dao.UserDao;
 import com.svalero.distrosound.database.Database;
 import com.svalero.distrosound.exception.ArtistNotFoundException;
-import com.svalero.distrosound.exception.RegistrationNotFoundException;
-import com.svalero.distrosound.exception.UserNotFoundException;
 import com.svalero.distrosound.model.Artist;
 import com.svalero.distrosound.model.Registration;
 
@@ -15,11 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @WebServlet("/artist")
 

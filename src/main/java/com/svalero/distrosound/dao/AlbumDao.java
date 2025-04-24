@@ -24,7 +24,7 @@ public class AlbumDao {
     }
 
     public boolean add(Album album) throws SQLException {
-        String sql = "INSERT INTO album (title, artist, genre, ISRC, description, explicit, price, url_cover, uploaded, id_artist) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO ALBUM (title, artist, genre, ISRC, description, explicit, price, url_cover, uploaded, id_artist) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement statement = statement = connection.prepareStatement(sql);
 
         statement.setString(1, album.getTitle());
@@ -47,12 +47,12 @@ public class AlbumDao {
 
     }
     public ArrayList getAll() throws SQLException {
-        String sql = "SELECT * FROM album";
+        String sql = "SELECT * FROM ALBUM";
         return launchQuery(sql);
     }
 
     public ArrayList getAllAlbums(String search) throws SQLException {
-        String sql = "SELECT * FROM album WHERE title LIKE ? OR artist LIKE ?";
+        String sql = "SELECT * FROM ALBUM WHERE title LIKE ? OR artist LIKE ?";
         return launchQuery(sql, search);
     }
 
@@ -85,7 +85,7 @@ public class AlbumDao {
 
     //devuelve TODOS los albunes que ha subido un cliente
     public ArrayList get(int id) throws SQLException {
-        String sql = "SELECT * FROM album WHERE id_artist = ?";
+        String sql = "SELECT * FROM ALBUM WHERE id_artist = ?";
         PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);
@@ -118,7 +118,7 @@ public class AlbumDao {
     //Devuelve un album por ID artista
     public Album getById(int id) throws SQLException, albumNotFoundException {
 
-        String sql = "SELECT * FROM album WHERE id_album = ?";
+        String sql = "SELECT * FROM ALBUM WHERE id_album = ?";
         PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);
@@ -153,7 +153,7 @@ public class AlbumDao {
 
     public boolean deleteAlbumById(int id) throws SQLException {
 
-        String sql = "DELETE FROM album WHERE id_album = ?";
+        String sql = "DELETE FROM ALBUM WHERE id_album = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
 
@@ -163,7 +163,7 @@ public class AlbumDao {
     }
 
     public boolean modifyAlbum(Album album) throws SQLException {
-        String sql = "UPDATE album SET title = ?, artist = ?, genre = ?, ISRC = ?, " +
+        String sql = "UPDATE ALBUM SET title = ?, artist = ?, genre = ?, ISRC = ?, " +
                 "description = ?, explicit = ?, price = ? WHERE id_album = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, album.getTitle());

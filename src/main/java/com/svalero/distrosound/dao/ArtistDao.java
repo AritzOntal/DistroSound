@@ -17,7 +17,7 @@ public class ArtistDao {
     }
 
     public boolean add(Artist artist) throws SQLException {
-        String sql = "INSERT INTO artist (name, last_name, username, password, email, birth_date, premium, royalties) VALUES (?,?,?,SHA1(?),?,?,?,?)";
+        String sql = "INSERT INTO ARTIST (name, last_name, username, password, email, birth_date, premium, royalties) VALUES (?,?,?,SHA1(?),?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, artist.getName());
         statement.setString(2, artist.getLast_name());
@@ -44,7 +44,7 @@ public class ArtistDao {
     }
 
     public boolean exists(String username) throws SQLException, ArtistNotFoundException {
-        String sql = "SELECT * FROM artist WHERE username = ?";
+        String sql = "SELECT * FROM ARTIST WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, username);
         ResultSet result = statement.executeQuery();
@@ -52,7 +52,7 @@ public class ArtistDao {
     }
 
     public String loginArtist(String username, String password) throws SQLException, ArtistNotFoundException {
-        String sql = "SELECT role FROM artist WHERE username = ? AND password = SHA1(?)";
+        String sql = "SELECT role FROM ARTIST WHERE username = ? AND password = SHA1(?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, username);
         statement.setString(2, password);
@@ -65,7 +65,7 @@ public class ArtistDao {
     }
 
     public Integer getArtistIdByUsername(String username) throws SQLException {
-        String sql = "SELECT id FROM artist WHERE username = ?";
+        String sql = "SELECT id FROM ARTIST WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, username);
         ResultSet resultSet = statement.executeQuery();
@@ -79,7 +79,7 @@ public class ArtistDao {
 
     public Artist getArtistById(int id) throws SQLException, ArtistNotFoundException {
 
-        String sql = "SELECT * FROM artist WHERE id = ?";
+        String sql = "SELECT * FROM ARTIST WHERE id = ?";
         PreparedStatement statement = null;
         ResultSet result = null;
         statement = connection.prepareStatement(sql);
@@ -108,12 +108,12 @@ public class ArtistDao {
     }
 
     public ArrayList getAll() throws SQLException {
-        String sql = "SELECT * FROM artist";
+        String sql = "SELECT * FROM ARTIST";
         return launchQuery(sql);
     }
 
     public ArrayList getAllArtist(String search) throws SQLException {
-        String sql = "SELECT * FROM artist WHERE name LIKE ? OR last_name LIKE ?";
+        String sql = "SELECT * FROM ARTIST WHERE name LIKE ? OR last_name LIKE ?";
         return launchQuery(sql, search);
     }
 
@@ -150,7 +150,7 @@ public class ArtistDao {
 
     public boolean deleteArtistById(int id) throws SQLException {
 
-        String sql = "DELETE FROM artist WHERE id = ?";
+        String sql = "DELETE FROM ARTIST WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         int affectedRows = statement.executeUpdate();
@@ -160,7 +160,7 @@ public class ArtistDao {
     }
 
     public boolean modifyArtist(Artist artist) throws SQLException {
-        String sql = "UPDATE artist SET name = ?, last_name = ?, username = ?, email = ?, " +
+        String sql = "UPDATE ARTIST SET name = ?, last_name = ?, username = ?, email = ?, " +
                 "premium = ?, royalties = ?, birth_date = ?, password = SHA1(?) WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, artist.getName());

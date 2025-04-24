@@ -2,11 +2,9 @@ package com.svalero.distrosound.servlet;
 
 import com.svalero.distrosound.dao.ArtistDao;
 import com.svalero.distrosound.dao.EmployeeDao;
-import com.svalero.distrosound.dao.UserDao;
 import com.svalero.distrosound.database.Database;
 import com.svalero.distrosound.exception.ArtistNotFoundException;
 import com.svalero.distrosound.exception.EmployeeNotFoundException;
-import com.svalero.distrosound.exception.UserNotFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

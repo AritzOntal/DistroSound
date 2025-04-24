@@ -21,7 +21,7 @@ public class EmployeeDao {
     }
 
     public boolean add(Employee employee) throws SQLException {
-        String sql = "INSERT INTO employee (name, last_name, username, password, email, speciality, comision, hiring_date) VALUES (?,?,?,SHA1(?),?,?,?,?)";
+        String sql = "INSERT INTO EMPLOYEE (name, last_name, username, password, email, speciality, comision, hiring_date) VALUES (?,?,?,SHA1(?),?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, employee.getName());
         statement.setString(2, employee.getLast_name());
@@ -47,7 +47,7 @@ public class EmployeeDao {
     }
 
     public boolean exists(String username) throws SQLException, EmployeeNotFoundException {
-        String sql = "SELECT * FROM employee WHERE username = ?";
+        String sql = "SELECT * FROM EMPLOYEE WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, username);
         ResultSet result = statement.executeQuery();
@@ -55,7 +55,7 @@ public class EmployeeDao {
     }
 
     public String loginEmployee(String username, String password) throws SQLException, EmployeeNotFoundException {
-        String sql = "SELECT role FROM employee WHERE username = ? AND password = SHA1(?)";
+        String sql = "SELECT role FROM EMPLOYEE WHERE username = ? AND password = SHA1(?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, username);
         statement.setString(2, password);
@@ -67,7 +67,7 @@ public class EmployeeDao {
     }
 
     public Integer getEmployeeIdByUsername(String username) throws SQLException {
-        String sql = "SELECT id_employee FROM employee WHERE username = ?";
+        String sql = "SELECT id_employee FROM EMPLOYEE WHERE username = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, username);
         ResultSet resultSet = statement.executeQuery();
@@ -80,7 +80,7 @@ public class EmployeeDao {
     }
 
     public Employee getEmployeeById(int id) throws SQLException, EmployeeNotFoundException {
-        String sql = "SELECT * FROM employee WHERE id_employee = ?";
+        String sql = "SELECT * FROM EMPLOYEE WHERE id_employee = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         ResultSet result = statement.executeQuery();
@@ -109,12 +109,12 @@ public class EmployeeDao {
     }
 
     public ArrayList getAllEmployee(String search) throws SQLException {
-        String sql = "SELECT * FROM employee WHERE name LIKE ? OR last_name LIKE ?";
+        String sql = "SELECT * FROM EMPLOYEE WHERE name LIKE ? OR last_name LIKE ?";
         return launchQuery(sql, search);
     }
 
     public ArrayList getAll() throws SQLException {
-        String sql = "SELECT * FROM employee";
+        String sql = "SELECT * FROM EMPLOYEE";
          return launchQuery(sql);
     }
 
@@ -147,7 +147,7 @@ public class EmployeeDao {
 
     //devuelve un único empleado
     public Employee get (int id){
-        String sql = "SELECT * FROM employee WHERE id_employee = ?";
+        String sql = "SELECT * FROM EMPLOYEE WHERE id_employee = ?";
         PreparedStatement statement = null;
 
         return null;
@@ -160,7 +160,7 @@ public class EmployeeDao {
 
     public boolean deleteEmployeeById(int id) throws SQLException {
 
-        String sql = "DELETE FROM employee WHERE id_employee = ?";
+        String sql = "DELETE FROM EMPLOYEE WHERE id_employee = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         int affectedRows = statement.executeUpdate();
@@ -170,7 +170,7 @@ public class EmployeeDao {
     }
 
     public boolean modifyEmployee(Employee employee) throws SQLException {
-        String sql = "UPDATE employee SET name = ?, last_name = ?, email = ?, " +
+        String sql = "UPDATE EMPLOYEE SET name = ?, last_name = ?, email = ?, " +
                 "username = ?, speciality = ?, active = ?, password = SHA1(?) WHERE id_employee = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, employee.getName());
