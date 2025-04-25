@@ -61,7 +61,7 @@
       </div>
       <div class="mb-2">
         <label class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="">
+        <input type="password" name="password" class="form-control" value="<%=employee.getUsername()%>" placeholder="">
       </div>
       <div class="mb-2">
         <label class="form-label">Especialidad</label>

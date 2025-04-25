@@ -30,7 +30,7 @@ public class EditEmployeeServlet extends HttpServlet {
         String newUsername = request.getParameter("username");
         String newPassword = request.getParameter("password");
         int idEmployee = Integer.parseInt(request.getParameter("id_employee"));
-        String newStringActive =request.getParameter("active");
+        String newStringActive =request.getParameter("activo");
 
 
         try {
@@ -44,8 +44,9 @@ public class EditEmployeeServlet extends HttpServlet {
 
               if ("yes".equalsIgnoreCase(newStringActive)) {
                 active = true;
-            } else if ("No".equalsIgnoreCase(newStringActive)) {}
-                active = false;
+            } else if ("no".equalsIgnoreCase(newStringActive)) {
+                  active = false;
+              }
 
             employee.setId_employee(idEmployee);
             employee.setName(newName);
