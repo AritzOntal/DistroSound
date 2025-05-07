@@ -41,7 +41,11 @@
                 <li class="list-group-item">Precio: <%= String.format("%.2f €", verAlbum.getPrice()) %></li>
             </ul>
             <div class="card-body">
-                <a href="deleteAlbum?id_album=<%=idAlbum%>" class="card-link">Elminiar</a>
+                <a href="deleteAlbum?id_album=<%=idAlbum%>"
+                   class="card-link"
+                   onclick="return confirm('¿Estás seguro de que deseas eliminar este álbum? Esta acción no se puede deshacer.');">
+                    Eliminar
+                </a>
                 <a href="modify.album.jsp?id_album=<%=idAlbum%>" class="card-link">Modificar</a>
             </div>
         </div>
