@@ -36,7 +36,11 @@
                     <p>Actualiza, modifica o elimina tus perfil.</p>
                     <a href="modify.client.jsp?id_artist=<%=idArtist%>"
                        class="btn btn-primary btn-sm">Modificar</a>
-                    <a href="deleteArtist?id_artist=<%= idArtist %>" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a href="deleteArtist?id_artist=<%= idArtist %>"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');">
+                        Eliminar
+                    </a>
                 </div>
             </div>
         </div>

@@ -27,7 +27,11 @@
                     <p>Actualiza, modifica o elimina tu perfil.</p>
                     <a href="modify.employee.jsp?id_employee=<%=idEmployee%>"
                        class="btn btn-primary btn-sm">Modificar</a>
-                    <a href="deleteEmployee?id_employee=<%=idEmployee%>" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a href="deleteEmployee?id_employee=<%=idEmployee%>"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado? Esta acción no se puede deshacer.');">
+                        Eliminar
+                    </a>
                 </div>
             </div>
         </div>

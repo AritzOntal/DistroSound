@@ -43,7 +43,7 @@
                 <label class="form-label">Precio ($)</label>
                 <input type="number" name="precio" class="form-control" step="0.01" placeholder="Ej: 9.99">
             </div>
-            <div class="mb-2">
+            <div class="mb-2" style="display: none;">
                 <label class="form-label">Id Artista</label>
                 <input type="number" name="id_artist" value=<%=idArtist%> class="form-control">
             </div>
